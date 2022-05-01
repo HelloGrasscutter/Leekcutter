@@ -13,5 +13,6 @@ public final class FKUCommand implements CommandHandler {
     @Override
     public void execute(Player sender, List<String> args) {
         sender.dropMessage(String.format("Fuck u too"));
+        sender.dropMessage(String.format("yourmom"));
     }
 }
