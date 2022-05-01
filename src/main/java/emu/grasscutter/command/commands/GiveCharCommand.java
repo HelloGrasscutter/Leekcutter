@@ -73,6 +73,12 @@ public final class GiveCharCommand implements CommandHandler {
             return;
         }
 
+        // Check level.
+        if (level > 90) {
+            CommandHandler.sendMessage(sender, "Invalid avatar level.");
+            return;
+        }
+
         // Calculate ascension level.
         if (level <= 40) {
             ascension = (int) Math.ceil(level / 20f);
@@ -88,6 +94,6 @@ public final class GiveCharCommand implements CommandHandler {
         avatar.recalcStats();
 
         targetPlayer.addAvatar(avatar);
-        CommandHandler.sendMessage(sender, String.format("已经把 %s 给了 %s.", avatarId, target));
+        CommandHandler.sendMessage(sender, String.format("已经把 %s 级的 %s 给了 %s.", level, avatarId, target));
     }
 }
