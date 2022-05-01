@@ -53,8 +53,8 @@ public final class TalentCommand implements CommandHandler {
                             CommandHandler.sendMessage(sender, "获取天赋id: /talent getid");
                             return;
                         }
-                        if (nextLevel > 16){ 
-                            CommandHandler.sendMessage(sender, "天赋等级无效，等级应低于16！");
+                        if (nextLevel >= 16){ 
+                            CommandHandler.sendMessage(sender, "天赋等级无效，等级应低于或等于16！");
                             return;
                         }
                             if (skillId == skillIdNorAtk){ 
@@ -117,8 +117,8 @@ public final class TalentCommand implements CommandHandler {
                         CommandHandler.sendMessage(sender, "设置天赋等级: /talent <n or e or q> <value>");
                         return;
                     }
-                    if (nextLevel > 16){
-                        CommandHandler.sendMessage(sender, "天赋等级无效，等级应低于16！");
+                    if (nextLevel >= 16){
+                        CommandHandler.sendMessage(sender, "天赋等级无效，等级应低于或等于16！");
                         return;
                     }
                     // Upgrade skill
