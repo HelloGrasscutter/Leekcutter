@@ -10,26 +10,26 @@ import emu.grasscutter.game.player.Player;
 import emu.grasscutter.server.packet.send.PacketAvatarFetterDataNotify;
 
 @Command(label = "setfetterlevel", usage = "setfetterlevel <level>",
-        description = "Sets your fetter level for your current active character",
+        description = "设置当前角色的好感等级",
         aliases = {"setfetterlvl", "setfriendship"}, permission = "player.setfetterlevel")
 public final class SetFetterLevelCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
         if (sender == null) {
-            CommandHandler.sendMessage(null, "Run this command in-game.");
+            CommandHandler.sendMessage(null, "请在游戏内执行该指令");
             return;
         }
 
         if (args.size() < 1) {
-            CommandHandler.sendMessage(sender, "Usage: setfetterlevel <level>");
+            CommandHandler.sendMessage(sender, "用法: setfetterlevel <level>");
             return;
         }
 
         try {
             int fetterLevel = Integer.parseInt(args.get(0));
             if (fetterLevel < 0 || fetterLevel > 10) {
-                CommandHandler.sendMessage(sender, "Fetter level must be between 0 and 10.");
+                CommandHandler.sendMessage(sender, "好感等级必须在0至10之间");
                 return;
             }
             Avatar avatar = sender.getTeamManager().getCurrentAvatarEntity().getAvatar();
@@ -41,9 +41,9 @@ public final class SetFetterLevelCommand implements CommandHandler {
 		    avatar.save();
 		
 		    sender.sendPacket(new PacketAvatarFetterDataNotify(avatar));
-            CommandHandler.sendMessage(sender, "Fetter level set to " + fetterLevel);
+            CommandHandler.sendMessage(sender, "好感等级已设定为 " + fetterLevel);
         } catch (NumberFormatException ignored) {
-            CommandHandler.sendMessage(sender, "Invalid fetter level.");
+            CommandHandler.sendMessage(sender, "无效的好感等级");
         }
     }
     

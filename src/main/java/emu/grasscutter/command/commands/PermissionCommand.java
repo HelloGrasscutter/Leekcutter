@@ -9,13 +9,13 @@ import emu.grasscutter.game.player.Player;
 import java.util.List;
 
 @Command(label = "permission", usage = "permission <add|remove> <username> <permission>",
-        description = "Grants or removes a permission for a user", permission = "*")
+        description = "添加或移除玩家的权限", permission = "*")
 public final class PermissionCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
         if (args.size() < 3) {
-            CommandHandler.sendMessage(sender, "Usage: permission <add|remove> <username> <permission>");
+            CommandHandler.sendMessage(sender, "用法: permission <add|remove> <username> <permission>");
             return;
         }
 
@@ -25,23 +25,23 @@ public final class PermissionCommand implements CommandHandler {
 
         Account account = Grasscutter.getGameServer().getAccountByName(username);
         if (account == null) {
-            CommandHandler.sendMessage(sender, "Account not found.");
+            CommandHandler.sendMessage(sender, "找不到该账号");
             return;
         }
 
         switch (action) {
             default:
-                CommandHandler.sendMessage(sender, "Usage: permission <add|remove> <username> <permission>");
+                CommandHandler.sendMessage(sender, "用法: permission <add|remove> <username> <permission>");
                 break;
             case "add":
                 if (account.addPermission(permission)) {
-                    CommandHandler.sendMessage(sender, "Permission added.");
-                } else CommandHandler.sendMessage(sender, "They already have this permission!");
+                    CommandHandler.sendMessage(sender, "权限已添加，这可必须是你信任的人呐！");
+                } else CommandHandler.sendMessage(sender, "他已经有这个权限了诶");
                 break;
             case "remove":
                 if (account.removePermission(permission)) {
-                    CommandHandler.sendMessage(sender, "Permission removed.");
-                } else CommandHandler.sendMessage(sender, "They don't have this permission!");
+                    CommandHandler.sendMessage(sender, "权限删除成功，是不是在清理带恶人？");
+                } else CommandHandler.sendMessage(sender, "啊这...这个玩家本来就没有此权限好吧");
                 break;
         }
 

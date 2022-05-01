@@ -9,18 +9,18 @@ import emu.grasscutter.server.packet.send.PacketSceneAreaWeatherNotify;
 import java.util.List;
 
 @Command(label = "weather", usage = "weather <weatherId> [climateId]",
-        description = "Changes the weather.", aliases = {"w"}, permission = "player.weather")
+        description = "改变weather", aliases = {"w"}, permission = "player.weather")
 public final class WeatherCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
         if (sender == null) {
-            CommandHandler.sendMessage(null, "Run this command in-game.");
+            CommandHandler.sendMessage(null, "请在游戏内执行此指令");
             return;
         }
 
         if (args.size() < 1) {
-            CommandHandler.sendMessage(sender, "Usage: weather <weatherId> [climateId]");
+            CommandHandler.sendMessage(sender, "用法: weather <weatherId> [climateId]");
             return;
         }
 
@@ -33,9 +33,9 @@ public final class WeatherCommand implements CommandHandler {
             sender.getScene().setWeather(weatherId);
             sender.getScene().setClimate(climate);
             sender.getScene().broadcastPacket(new PacketSceneAreaWeatherNotify(sender));
-            CommandHandler.sendMessage(sender, "Changed weather to " + weatherId + " with climate " + climateId);
+            CommandHandler.sendMessage(sender, "已将天气修改为 " + weatherId + " 并将气候修改为 " + climateId);
         } catch (NumberFormatException ignored) {
-            CommandHandler.sendMessage(sender, "Invalid ID.");
+            CommandHandler.sendMessage(sender, "无效的ID");
         }
     }
 }

@@ -9,27 +9,27 @@ import emu.grasscutter.utils.Position;
 import java.util.List;
 
 @Command(label = "teleport", usage = "teleport [@player id] <x> <y> <z> [scene id]", aliases = {"tp"},
-        description = "Change the player's position.", permission = "player.teleport")
+        description = "改变玩家的位置至指定坐标", permission = "player.teleport")
 public final class TeleportCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
         int target;
         if (args.size() < (sender == null ? 4 : 3)) {
-            CommandHandler.sendMessage(sender, sender == null ? "Usage: /tp @<player id> <x> <y> <z> [scene id]" :
-                    "Usage: /tp [@<player id>] <x> <y> <z> [scene id]");
+            CommandHandler.sendMessage(sender, sender == null ? "用法: /tp @<player id> <x> <y> <z> [scene id]" :
+                    "用法: /tp [@<player id>] <x> <y> <z> [scene id]");
             return;
         }
         if (args.get(0).startsWith("@")) {
             try {
                 target = Integer.parseInt(args.get(0).substring(1));
             } catch (NumberFormatException e) {
-                CommandHandler.sendMessage(sender, "Invalid player id.");
+                CommandHandler.sendMessage(sender, "无效的玩家ID");
                 return;
             }
         } else {
             if (sender == null) {
-                CommandHandler.sendMessage(null, "You must specify a player id.");
+                CommandHandler.sendMessage(null, "必须指定玩家id");
                 return;
             }
             target = sender.getUid();
@@ -37,7 +37,7 @@ public final class TeleportCommand implements CommandHandler {
 
         Player targetPlayer = Grasscutter.getGameServer().getPlayerByUid(target);
         if (targetPlayer == null) {
-            CommandHandler.sendMessage(sender, "Player not found or offline.");
+            CommandHandler.sendMessage(sender, "玩家不存在或处于离线状态");
             return;
         }
         args = args.subList(args.get(0).startsWith("@") ? 1 : 0, args.size());
@@ -80,12 +80,12 @@ public final class TeleportCommand implements CommandHandler {
             Position target_pos = new Position(x, y, z);
             boolean result = targetPlayer.getWorld().transferPlayerToScene(targetPlayer, sceneId, target_pos);
             if (!result) {
-                CommandHandler.sendMessage(sender, "Invalid position.");
+                CommandHandler.sendMessage(sender, "无效的坐标");
             } else {
-                CommandHandler.sendMessage(sender, "Teleported " + targetPlayer.getNickname() + " to " + x + "," + y + "," + z + " in scene " + sceneId);
+                CommandHandler.sendMessage(sender, "传送至 " + targetPlayer.getNickname() + " to " + x + "," + y + "," + z + " in scene " + sceneId);
             }
         } catch (NumberFormatException ignored) {
-            CommandHandler.sendMessage(sender, "Invalid position.");
+            CommandHandler.sendMessage(sender, "无效的坐标");
         }
     }
 }

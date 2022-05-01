@@ -10,7 +10,7 @@ import emu.grasscutter.server.packet.send.PacketEntityFightPropUpdateNotify;
 import java.util.List;
 
 @Command(label = "setstats", usage = "setstats|stats <stat> <value>",
-        description = "Set fight property for your current active character", aliases = {"stats"}, permission = "player.setstats")
+        description = "直接修改当前角色的面板【该指令暂无汉化】", aliases = {"stats"}, permission = "player.setstats")
 public final class SetStatsCommand implements CommandHandler {
 
     @Override

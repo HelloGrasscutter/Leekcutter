@@ -11,18 +11,18 @@ import emu.grasscutter.utils.Position;
 import java.util.List;
 
 @Command(label = "spawn", usage = "spawn <entityId|entityName> [level] [amount]",
-        description = "Spawns an entity near you", permission = "server.spawn")
+        description = "在你周围生成实体", permission = "server.spawn")
 public final class SpawnCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
         if (sender == null) {
-            CommandHandler.sendMessage(null, "Run this command in-game.");
+            CommandHandler.sendMessage(null, "请在游戏内执行此指令");
             return;
         }
 
         if (args.size() < 1) {
-            CommandHandler.sendMessage(sender, "Usage: spawn <entityId|entityName> [amount]");
+            CommandHandler.sendMessage(sender, "用法: spawn <entityId|entityName> [amount]");
             return;
         }
 
@@ -33,7 +33,7 @@ public final class SpawnCommand implements CommandHandler {
 
             MonsterData entityData = GameData.getMonsterDataMap().get(entity);
             if (entityData == null) {
-                CommandHandler.sendMessage(sender, "Invalid entity id.");
+                CommandHandler.sendMessage(sender, "无效的实体id");
                 return;
             }
 
@@ -43,9 +43,9 @@ public final class SpawnCommand implements CommandHandler {
                 EntityMonster monster = new EntityMonster(sender.getScene(), entityData, pos, level);
                 sender.getScene().addEntity(monster);
             }
-            CommandHandler.sendMessage(sender, String.format("Spawned %s of %s.", amount, entity));
+            CommandHandler.sendMessage(sender, String.format("已生成 %s 个 %s.", amount, entity));
         } catch (NumberFormatException ignored) {
-            CommandHandler.sendMessage(sender, "Invalid item or player ID.");
+            CommandHandler.sendMessage(sender, "无效的物品或玩家id");
         }
     }
 }

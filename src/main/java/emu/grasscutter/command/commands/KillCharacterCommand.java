@@ -13,7 +13,7 @@ import emu.grasscutter.server.packet.send.PacketLifeStateChangeNotify;
 import java.util.List;
 
 @Command(label = "killcharacter", usage = "killcharacter [playerId]", aliases = {"suicide", "kill"},
-        description = "Kills the players current character", permission = "player.killcharacter")
+        description = "杀死玩家当前角色", permission = "player.killcharacter")
 public final class KillCharacterCommand implements CommandHandler {
 
     @Override
@@ -25,11 +25,11 @@ public final class KillCharacterCommand implements CommandHandler {
                 try {
                     target = Integer.parseInt(args.get(0));
                 } catch (NumberFormatException e) {
-                    CommandHandler.sendMessage(null, "Invalid player id.");
+                    CommandHandler.sendMessage(null, "无效玩家id");
                     return;
                 }
             } else {
-                CommandHandler.sendMessage(null, "Usage: /killcharacter [playerId]");
+                CommandHandler.sendMessage(null, "用法: /killcharacter [playerId]");
                 return;
             }
         } else {
@@ -40,7 +40,7 @@ public final class KillCharacterCommand implements CommandHandler {
                         target = sender.getUid();
                     }
                 } catch (NumberFormatException e) {
-                    CommandHandler.sendMessage(sender, "Invalid player id.");
+                    CommandHandler.sendMessage(sender, "无效玩家id");
                     return;
                 }
             } else {
@@ -50,7 +50,7 @@ public final class KillCharacterCommand implements CommandHandler {
 
         Player targetPlayer = Grasscutter.getGameServer().getPlayerByUid(target);
         if (targetPlayer == null) {
-            CommandHandler.sendMessage(sender, "Player not found or offline.");
+            CommandHandler.sendMessage(sender, "玩家不存在或离线");
             return;
         }
 
@@ -63,6 +63,6 @@ public final class KillCharacterCommand implements CommandHandler {
         targetPlayer.getScene().removeEntity(entity);
         entity.onDeath(0);
 
-        CommandHandler.sendMessage(sender, "Killed " + targetPlayer.getNickname() + " current character.");
+        CommandHandler.sendMessage(sender, "已杀死 " + targetPlayer.getNickname() + " 的角色");
     }
 }

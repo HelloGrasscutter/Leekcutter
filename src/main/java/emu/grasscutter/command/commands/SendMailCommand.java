@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Command(label = "sendmail", usage = "sendmail <userId|all|help> [templateId]",
-        description = "Sends mail to the specified user. The usage of this command changes based on it's composition state.", permission = "server.sendmail")
+        description = "向指定用户发送邮件。此命令的用法会根据其参数而改变。【此指令暂无汉化】", permission = "server.sendmail")
 public final class SendMailCommand implements CommandHandler {
 
     // TODO: You should be able to do /sendmail and then just send subsequent messages until you finish
@@ -37,7 +37,7 @@ public final class SendMailCommand implements CommandHandler {
                     MailBuilder mailBuilder;
                     switch (args.get(0).toLowerCase()) {
                         case "help" -> {
-                            CommandHandler.sendMessage(sender, this.getClass().getAnnotation(Command.class).description() + "\nUsage: " + this.getClass().getAnnotation(Command.class).usage());
+                            CommandHandler.sendMessage(sender, this.getClass().getAnnotation(Command.class).description() + "\n用法: " + this.getClass().getAnnotation(Command.class).usage());
                             return;
                         }
                         case "all" -> mailBuilder = new MailBuilder(true, new Mail());
@@ -45,7 +45,7 @@ public final class SendMailCommand implements CommandHandler {
                             if (DatabaseHelper.getPlayerById(Integer.parseInt(args.get(0))) != null) {
                                 mailBuilder = new MailBuilder(Integer.parseInt(args.get(0)), new Mail());
                             } else {
-                                CommandHandler.sendMessage(sender, "The user with an id of '" + args.get(0) + "' does not exist");
+                                CommandHandler.sendMessage(sender, "此id '" + args.get(0) + "' 不存在");
                                 return;
                             }
                         }

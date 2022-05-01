@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @Command(label = "list", usage = "list [uid]",
-        description = "List online players", aliases = {"players"})
+        description = "列出在线玩家", aliases = {"players"})
 public final class ListCommand implements CommandHandler {
 
     @Override
@@ -21,7 +21,7 @@ public final class ListCommand implements CommandHandler {
             needUID = args.get(0).equals("uid");
         }
 
-        CommandHandler.sendMessage(sender, String.format("There are %s player(s) online:", playersMap.size()));
+        CommandHandler.sendMessage(sender, String.format("有 %s 个玩家在线，它们分别是：", playersMap.size()));
 
         if (playersMap.size() != 0) {
             StringBuilder playerSet = new StringBuilder();

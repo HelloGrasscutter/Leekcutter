@@ -11,7 +11,7 @@ import emu.grasscutter.game.world.Scene;
 import java.util.List;
 
 @Command(label = "killall", usage = "killall [playerUid] [sceneId]",
-        description = "Kill all entities", permission = "server.killall")
+        description = "杀死指定玩家世界中所在或指定场景的全部生物", permission = "server.killall")
 public final class KillAllCommand implements CommandHandler {
 
     @Override
@@ -23,7 +23,7 @@ public final class KillAllCommand implements CommandHandler {
             switch (args.size()) {
                 case 0: // *No args*
                     if (sender == null) {
-                        CommandHandler.sendMessage(null, "Usage: killall [playerUid] [sceneId]");
+                        CommandHandler.sendMessage(null, "用法: killall [playerUid] [sceneId]");
                         return;
                     }
                     mainScene = sender.getScene();
@@ -31,7 +31,7 @@ public final class KillAllCommand implements CommandHandler {
                 case 1: // [playerUid]
                     targetPlayer = Grasscutter.getGameServer().getPlayerByUid(Integer.parseInt(args.get(0)));
                     if (targetPlayer == null) {
-                        CommandHandler.sendMessage(sender, "Player not found or offline.");
+                        CommandHandler.sendMessage(sender, "玩家不存在或离线");
                         return;
                     }
                     mainScene = targetPlayer.getScene();
@@ -39,18 +39,18 @@ public final class KillAllCommand implements CommandHandler {
                 case 2: // [playerUid] [sceneId]
                     targetPlayer = Grasscutter.getGameServer().getPlayerByUid(Integer.parseInt(args.get(0)));
                     if (targetPlayer == null) {
-                        CommandHandler.sendMessage(sender, "Player not found or offline.");
+                        CommandHandler.sendMessage(sender, "玩家不存在或离线");
                         return;
                     }
                     Scene scene = sender.getWorld().getSceneById(Integer.parseInt(args.get(1)));
                     if (scene == null) {
-                        CommandHandler.sendMessage(sender, "Scene not found in player world");
+                        CommandHandler.sendMessage(sender, "场景不存在于玩家世界中");
                         return;
                     }
                     mainScene = scene;
                     break;
                 default:
-                    CommandHandler.sendMessage(sender, "Usage: killall [playerUid] [sceneId]");
+                    CommandHandler.sendMessage(sender, "用法: killall [playerUid] [sceneId]");
                     return;
             }
 
@@ -59,9 +59,9 @@ public final class KillAllCommand implements CommandHandler {
                     .filter(entity -> entity instanceof EntityMonster)
                     .toList();
             toKill.stream().forEach(entity -> mainScene.killEntity(entity, 0));
-            CommandHandler.sendMessage(sender, "Killing " + toKill.size() + " monsters in scene " + mainScene.getId());
+            CommandHandler.sendMessage(sender, "正在杀死 " + toKill.size() + " 场景里的怪物 " + mainScene.getId());
         } catch (NumberFormatException ignored) {
-            CommandHandler.sendMessage(sender, "Invalid arguments.");
+            CommandHandler.sendMessage(sender, "无效参数");
         }
     }
 }

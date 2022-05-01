@@ -9,20 +9,20 @@ import emu.grasscutter.game.player.Player;
 import java.util.List;
 
 @Command(label = "resetconst", usage = "resetconst [all]",
-        description = "Resets the constellation level on your current active character, will need to relog after using the command to see any changes.",
+        description = "重置当前角色的命座,重新登录即可生效",
         aliases = {"resetconstellation"}, permission = "player.resetconstellation")
 public final class ResetConstCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
         if (sender == null) {
-            CommandHandler.sendMessage(null, "Run this command in-game.");
+            CommandHandler.sendMessage(null, "请在游戏内执行此指令");
             return;
         }
 
         if (args.size() > 0 && args.get(0).equalsIgnoreCase("all")) {
             sender.getAvatars().forEach(this::resetConstellation);
-            sender.dropMessage("Reset all avatars' constellations.");
+            sender.dropMessage("重置所有角色的命座");
         } else {
             EntityAvatar entity = sender.getTeamManager().getCurrentAvatarEntity();
             if (entity == null) {
@@ -32,7 +32,7 @@ public final class ResetConstCommand implements CommandHandler {
             Avatar avatar = entity.getAvatar();
             this.resetConstellation(avatar);
 
-            sender.dropMessage("Constellations for " + avatar.getAvatarData().getName() + " have been reset. Please relog to see changes.");
+            sender.dropMessage(avatar.getAvatarData().getName() + "的命座已重置。重新登陆以查看结果");
         }
     }
 
