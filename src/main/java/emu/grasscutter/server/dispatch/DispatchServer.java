@@ -240,7 +240,7 @@ public final class DispatchServer {
 			}
 		});
 
-		httpServer.get("/", (req, res) -> res.send("Welcome to Grasscutter"));
+		httpServer.get("/", (req, res) -> res.send("欢迎来到Leekcutter！"));
 
 		httpServer.raw().error(404, ctx -> {
 			if(Grasscutter.getConfig().DebugMode == ServerDebugMode.MISSING) {
