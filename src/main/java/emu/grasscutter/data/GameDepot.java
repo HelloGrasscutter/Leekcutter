@@ -38,7 +38,7 @@ public class GameDepot {
 		}
 		// Let the server owner know if theyre missing weights
 		if (relicMainPropDepot.size() == 0 || relicAffixDepot.size() == 0) {
-			Grasscutter.getLogger().error("Relic properties are missing weights! Please check your ReliquaryMainPropExcelConfigData or ReliquaryAffixExcelConfigData files in your ExcelBinOutput folder.");
+			Grasscutter.getLogger().error("文物属性缺少权重！请检查ExcelBinOutput文件夹中的ReliquaryMapinPropertyXcelConfigData或ReliquaryAffixExcelConfigData文件。");
 		}
 	}
 	

@@ -207,8 +207,8 @@ public final class GameServer extends KcpServer {
 
 	@Override
 	public void onStartFinish() {
-		Grasscutter.getLogger().info("Grasscutter is FREE software. If you have paid for this, you may have been scammed. Homepage: https://github.com/Grasscutters/Grasscutter");
-		Grasscutter.getLogger().info("Game Server started on port " + address.getPort());
+		Grasscutter.getLogger().info("Leekcutter是免费且开源的软件。如果您是通过购买的方式获取到此软件，那么恭喜你被骗了。开源地址：https://github.com/Grasscutters/Grasscutter");
+		Grasscutter.getLogger().info("游戏服务器已在此端口上开启： " + address.getPort());
 		ServerStartEvent event = new ServerStartEvent(ServerEvent.Type.GAME, OffsetDateTime.now()); event.call();
 	}
 	

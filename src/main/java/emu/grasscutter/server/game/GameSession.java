@@ -113,12 +113,12 @@ public class GameSession extends KcpChannel {
 	
 	@Override
 	protected void onConnect() {
-		Grasscutter.getLogger().info("Client connected from " + getAddress().getHostString().toLowerCase());
+		Grasscutter.getLogger().info("来自 " + getAddress().getHostString().toLowerCase() + " 的客户端连接");
 	}
 
 	@Override
 	protected synchronized void onDisconnect() { // Synchronize so we dont add character at the same time
-		Grasscutter.getLogger().info("Client disconnected from " + getAddress().getHostString().toLowerCase());
+		Grasscutter.getLogger().info("客户端 " + getAddress().getHostString().toLowerCase() + " 断开");
 
 		// Set state so no more packets can be handled
 		this.setState(SessionState.INACTIVE);

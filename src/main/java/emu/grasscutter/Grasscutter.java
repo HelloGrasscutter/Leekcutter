@@ -64,7 +64,7 @@ public final class Grasscutter {
 		}
 		
 		// Initialize server.
-		Grasscutter.getLogger().info("Starting Grasscutter...");
+		Grasscutter.getLogger().info("正在启动Leekcutter...");
 		
 		// Load all resources.
 		Grasscutter.updateDayOfWeek();
@@ -90,9 +90,9 @@ public final class Grasscutter {
 		} else if (getConfig().RunMode == ServerRunMode.GAME_ONLY) {
 			gameServer.start();
 		} else {
-			getLogger().error("Invalid server run mode. " + getConfig().RunMode);
-			getLogger().error("Server run mode must be 'HYBRID', 'DISPATCH_ONLY', or 'GAME_ONLY'. Unable to start Grasscutter...");
-			getLogger().error("Shutting down...");
+			getLogger().error("无效的服务器运行模式 " + getConfig().RunMode);
+			getLogger().error("服务器运行模式必须为“混合”、“仅调度”或“仅游戏”。无法启动Leekcutter...");
+			getLogger().error("退出中...");
 			System.exit(1);
 		}
 		

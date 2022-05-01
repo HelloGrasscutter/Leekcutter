@@ -105,7 +105,7 @@ public class ResourceLoader {
 			try {
 				loadFromResource(resourceDefinition, type, map);
 			} catch (Exception e) {
-				Grasscutter.getLogger().error("Error loading resource file: " + Arrays.toString(type.name()), e);
+				Grasscutter.getLogger().error("资源文件加载失败: " + Arrays.toString(type.name()), e);
 			}
 		}
 	}
@@ -115,7 +115,7 @@ public class ResourceLoader {
 		for (String name : type.name()) {
 			loadFromResource(c, name, map);
 		}
-		Grasscutter.getLogger().info("Loaded " + map.size() + " " + c.getSimpleName() + "s.");
+		Grasscutter.getLogger().info("加载了 " + map.size() + " 个 " + c.getSimpleName());
 	}
 	
 	@SuppressWarnings({"rawtypes", "unchecked"})
