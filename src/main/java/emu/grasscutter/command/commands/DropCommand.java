@@ -11,18 +11,18 @@ import emu.grasscutter.utils.Position;
 import java.util.List;
 
 @Command(label = "drop", usage = "drop <itemId|itemName> [amount]",
-        description = "åœ¨ç©å®¶é™„ä»¶æ‰è½ä½ æŒ‡å®šçš„ç‰©å“", aliases = {"d", "dropitem"}, permission = "server.drop")
+        description = "ÔÚÍæ¼Ò¸½¼şµôÂäÄãÖ¸¶¨µÄÎïÆ·", aliases = {"d", "dropitem"}, permission = "server.drop")
 public final class DropCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
         if (sender == null) {
-            CommandHandler.sendMessage(null, "è¯·åœ¨æ¸¸æˆä¸­æ‰§è¡Œè¯¥æŒ‡ä»¤");
+            CommandHandler.sendMessage(null, "ÇëÔÚÓÎÏ·ÖĞÖ´ĞĞ¸ÃÖ¸Áî");
             return;
         }
 
         if (args.size() < 1) {
-            CommandHandler.sendMessage(sender, "ç”¨æ³•: drop <itemId|itemName> [amount]");
+            CommandHandler.sendMessage(sender, "ÓÃ·¨: drop <itemId|itemName> [amount]");
             return;
         }
 
@@ -33,7 +33,7 @@ public final class DropCommand implements CommandHandler {
 
             ItemData itemData = GameData.getItemDataMap().get(item);
             if (itemData == null) {
-                CommandHandler.sendMessage(sender, "æ— æ•ˆçš„ç‰©å“idï¼Œä½ æˆ–è®¸éœ€è¦ä¸€ä»½HandBookï¼Ÿ");
+                CommandHandler.sendMessage(sender, "ÎŞĞ§µÄÎïÆ·id£¬Äã»òĞíĞèÒªÒ»·İHandBook£¿");
                 return;
             }
 
@@ -48,9 +48,9 @@ public final class DropCommand implements CommandHandler {
                 EntityItem entity = new EntityItem(sender.getScene(), sender, itemData, sender.getPos().clone().addY(3f), amount);
                 sender.getScene().addEntity(entity);
             }
-            CommandHandler.sendMessage(sender, String.format("å·²æ‰è½äº† %s ä¸ª %s", amount, item));
+            CommandHandler.sendMessage(sender, String.format("ÒÑµôÂäÁË %s ¸ö %s", amount, item));
         } catch (NumberFormatException ignored) {
-            CommandHandler.sendMessage(sender, "æ— æ•ˆçš„ç‰©å“æˆ–ç©å®¶id");
+            CommandHandler.sendMessage(sender, "ÎŞĞ§µÄÎïÆ·»òÍæ¼Òid");
         }
     }
 }

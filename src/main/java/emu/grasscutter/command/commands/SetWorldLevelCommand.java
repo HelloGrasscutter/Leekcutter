@@ -8,19 +8,19 @@ import emu.grasscutter.game.props.PlayerProperty;
 import java.util.List;
 
 @Command(label = "setworldlevel", usage = "setworldlevel <level>",
-        description = "è®¾ç½®ä¸–ç•Œç­‰çº§(é‡æ–°ç™»å½•å³å¯ç”Ÿæ•ˆ)",
+        description = "ÉèÖÃÊÀ½çµÈ¼¶(ÖØĞÂµÇÂ¼¼´¿ÉÉúĞ§)",
         aliases = {"setworldlvl"}, permission = "player.setworldlevel")
 public final class SetWorldLevelCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
         if (sender == null) {
-            CommandHandler.sendMessage(null, "è¯·åœ¨æ¸¸æˆå†…æ‰§è¡Œè¯¥æŒ‡ä»¤");
+            CommandHandler.sendMessage(null, "ÇëÔÚÓÎÏ·ÄÚÖ´ĞĞ¸ÃÖ¸Áî");
             return; // TODO: set player's world level from console or other players
         }
 
         if (args.size() < 1) {
-            CommandHandler.sendMessage(sender, "ç”¨æ³•: setworldlevel <level>");
+            CommandHandler.sendMessage(sender, "ÓÃ·¨: setworldlevel <level>");
             return;
         }
 
@@ -31,9 +31,9 @@ public final class SetWorldLevelCommand implements CommandHandler {
             sender.getWorld().setWorldLevel(level);
             sender.setWorldLevel(level);
 
-            sender.dropMessage("ä¸–ç•Œç­‰çº§å·²è®¾å®šä¸º " + level + ".");
+            sender.dropMessage("ÊÀ½çµÈ¼¶ÒÑÉè¶¨Îª " + level + ".");
         } catch (NumberFormatException ignored) {
-            CommandHandler.sendMessage(null, "æ— æ•ˆçš„ä¸–ç•Œç­‰çº§");
+            CommandHandler.sendMessage(null, "ÎŞĞ§µÄÊÀ½çµÈ¼¶");
         }
     }
 }

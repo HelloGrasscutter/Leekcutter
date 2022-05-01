@@ -11,7 +11,7 @@ import emu.grasscutter.game.world.Scene;
 import java.util.List;
 
 @Command(label = "killall", usage = "killall [playerUid] [sceneId]",
-        description = "æ€æ­»æŒ‡å®šç©å®¶ä¸–ç•Œä¸­æ‰€åœ¨æˆ–æŒ‡å®šåœºæ™¯çš„å…¨éƒ¨ç”Ÿç‰©", permission = "server.killall")
+        description = "É±ËÀÖ¸¶¨Íæ¼ÒÊÀ½çÖĞËùÔÚ»òÖ¸¶¨³¡¾°µÄÈ«²¿ÉúÎï", permission = "server.killall")
 public final class KillAllCommand implements CommandHandler {
 
     @Override
@@ -23,7 +23,7 @@ public final class KillAllCommand implements CommandHandler {
             switch (args.size()) {
                 case 0: // *No args*
                     if (sender == null) {
-                        CommandHandler.sendMessage(null, "ç”¨æ³•: killall [playerUid] [sceneId]");
+                        CommandHandler.sendMessage(null, "ÓÃ·¨: killall [playerUid] [sceneId]");
                         return;
                     }
                     mainScene = sender.getScene();
@@ -31,7 +31,7 @@ public final class KillAllCommand implements CommandHandler {
                 case 1: // [playerUid]
                     targetPlayer = Grasscutter.getGameServer().getPlayerByUid(Integer.parseInt(args.get(0)));
                     if (targetPlayer == null) {
-                        CommandHandler.sendMessage(sender, "ç©å®¶ä¸å­˜åœ¨æˆ–ç¦»çº¿");
+                        CommandHandler.sendMessage(sender, "Íæ¼Ò²»´æÔÚ»òÀëÏß");
                         return;
                     }
                     mainScene = targetPlayer.getScene();
@@ -39,18 +39,18 @@ public final class KillAllCommand implements CommandHandler {
                 case 2: // [playerUid] [sceneId]
                     targetPlayer = Grasscutter.getGameServer().getPlayerByUid(Integer.parseInt(args.get(0)));
                     if (targetPlayer == null) {
-                        CommandHandler.sendMessage(sender, "ç©å®¶ä¸å­˜åœ¨æˆ–ç¦»çº¿");
+                        CommandHandler.sendMessage(sender, "Íæ¼Ò²»´æÔÚ»òÀëÏß");
                         return;
                     }
                     Scene scene = sender.getWorld().getSceneById(Integer.parseInt(args.get(1)));
                     if (scene == null) {
-                        CommandHandler.sendMessage(sender, "åœºæ™¯ä¸å­˜åœ¨äºç©å®¶ä¸–ç•Œä¸­");
+                        CommandHandler.sendMessage(sender, "³¡¾°²»´æÔÚÓÚÍæ¼ÒÊÀ½çÖĞ");
                         return;
                     }
                     mainScene = scene;
                     break;
                 default:
-                    CommandHandler.sendMessage(sender, "ç”¨æ³•: killall [playerUid] [sceneId]");
+                    CommandHandler.sendMessage(sender, "ÓÃ·¨: killall [playerUid] [sceneId]");
                     return;
             }
 
@@ -59,9 +59,9 @@ public final class KillAllCommand implements CommandHandler {
                     .filter(entity -> entity instanceof EntityMonster)
                     .toList();
             toKill.stream().forEach(entity -> mainScene.killEntity(entity, 0));
-            CommandHandler.sendMessage(sender, "æ­£åœ¨æ€æ­» " + toKill.size() + " åœºæ™¯é‡Œçš„æ€ªç‰© " + mainScene.getId());
+            CommandHandler.sendMessage(sender, "ÕıÔÚÉ±ËÀ " + toKill.size() + " ³¡¾°ÀïµÄ¹ÖÎï " + mainScene.getId());
         } catch (NumberFormatException ignored) {
-            CommandHandler.sendMessage(sender, "æ— æ•ˆå‚æ•°");
+            CommandHandler.sendMessage(sender, "ÎŞĞ§²ÎÊı");
         }
     }
 }

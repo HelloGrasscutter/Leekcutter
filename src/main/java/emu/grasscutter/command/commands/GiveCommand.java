@@ -13,7 +13,7 @@ import emu.grasscutter.game.props.ActionReason;
 import java.util.LinkedList;
 import java.util.List;
 
-@Command(label = "give", usage = "give [player] <itemId|itemName> [amount] [level]", description = "ç»™äºˆæŒ‡å®šç©å®¶ä¸€å®šæ•°é‡åŠç­‰çº§çš„ç‰©å“ (ç²¾ç‚¼ç­‰çº§ä»…é€‚ç”¨äºæ­¦å™¨)", aliases = {
+@Command(label = "give", usage = "give [player] <itemId|itemName> [amount] [level]", description = "¸øÓèÖ¸¶¨Íæ¼ÒÒ»¶¨ÊıÁ¿¼°µÈ¼¶µÄÎïÆ· (¾«Á¶µÈ¼¶½öÊÊÓÃÓÚÎäÆ÷)", aliases = {
         "g", "item", "giveitem"}, permission = "player.give")
 public final class GiveCommand implements CommandHandler {
 
@@ -21,13 +21,13 @@ public final class GiveCommand implements CommandHandler {
     public void execute(Player sender, List<String> args) {
         int target, item, lvl, amount = 1, refinement = 0;
         if (sender == null && args.size() < 2) {
-            CommandHandler.sendMessage(null, "ç”¨æ³•: give <player> <itemId|itemName> [amount] [level]");
+            CommandHandler.sendMessage(null, "ÓÃ·¨: give <player> <itemId|itemName> [amount] [level]");
             return;
         }
 
         switch (args.size()) {
             default: // *No args*
-                CommandHandler.sendMessage(sender, "ç”¨æ³•: give [player] <itemId|itemName> [amount]");
+                CommandHandler.sendMessage(sender, "ÓÃ·¨: give [player] <itemId|itemName> [amount]");
                 return;
             case 1: // <itemId|itemName>
                 try {
@@ -36,7 +36,7 @@ public final class GiveCommand implements CommandHandler {
                     lvl = 1;
                 } catch (NumberFormatException ignored) {
                     // TODO: Parse from item name using GM Handbook.
-                    CommandHandler.sendMessage(sender, "æ— æ•ˆçš„ç‰©å“ID");
+                    CommandHandler.sendMessage(sender, "ÎŞĞ§µÄÎïÆ·ID");
                     return;
                 }
                 break;
@@ -54,7 +54,7 @@ public final class GiveCommand implements CommandHandler {
                     }
                 } catch (NumberFormatException ignored) {
                     // TODO: Parse from item name using GM Handbook.
-                    CommandHandler.sendMessage(sender, "æ— æ•ˆçš„ç‰©å“æˆ–ç©å®¶id");
+                    CommandHandler.sendMessage(sender, "ÎŞĞ§µÄÎïÆ·»òÍæ¼Òid");
                     return;
                 }
                 break;
@@ -75,7 +75,7 @@ public final class GiveCommand implements CommandHandler {
 
                 } catch (NumberFormatException ignored) {
                     // TODO: Parse from item name using GM Handbook.
-                    CommandHandler.sendMessage(sender, "æ— æ•ˆçš„ç‰©å“æˆ–ç©å®¶id");
+                    CommandHandler.sendMessage(sender, "ÎŞĞ§µÄÎïÆ·»òÍæ¼Òid");
                     return;
                 }
                 break;
@@ -96,7 +96,7 @@ public final class GiveCommand implements CommandHandler {
                     }
                 } catch (NumberFormatException ignored) {
                     // TODO: Parse from item name using GM Handbook.
-                    CommandHandler.sendMessage(sender, "æ— æ•ˆçš„ç‰©å“æˆ–ç©å®¶id");
+                    CommandHandler.sendMessage(sender, "ÎŞĞ§µÄÎïÆ·»òÍæ¼Òid");
                     return;
                 }
                 break;
@@ -105,7 +105,7 @@ public final class GiveCommand implements CommandHandler {
                     target = Integer.parseInt(args.get(0));
 
                     if (Grasscutter.getGameServer().getPlayerByUid(target) == null) {
-                        CommandHandler.sendMessage(sender, "æ— æ•ˆçš„ç©å®¶id");
+                        CommandHandler.sendMessage(sender, "ÎŞĞ§µÄÍæ¼Òid");
                         return;
                     } else {
                         item = Integer.parseInt(args.get(1));
@@ -115,7 +115,7 @@ public final class GiveCommand implements CommandHandler {
                     }
                 } catch (NumberFormatException ignored) {
                     // TODO: Parse from item name using GM Handbook.
-                    CommandHandler.sendMessage(sender, "æ— æ•ˆçš„ç‰©å“æˆ–ç©å®¶id");
+                    CommandHandler.sendMessage(sender, "ÎŞĞ§µÄÎïÆ·»òÍæ¼Òid");
                     return;
                 }
                 break;
@@ -124,23 +124,23 @@ public final class GiveCommand implements CommandHandler {
         Player targetPlayer = Grasscutter.getGameServer().getPlayerByUid(target);
 
         if (targetPlayer == null) {
-            CommandHandler.sendMessage(sender, "æŸ¥æ— æ­¤äºº");
+            CommandHandler.sendMessage(sender, "²éÎŞ´ËÈË");
             return;
         }
 
         ItemData itemData = GameData.getItemDataMap().get(item);
         if (itemData == null) {
-            CommandHandler.sendMessage(sender, "æ— æ•ˆçš„ç‰©å“id");
+            CommandHandler.sendMessage(sender, "ÎŞĞ§µÄÎïÆ·id");
             return;
         }
         if (refinement != 0) {
             if (itemData.getItemType() == ItemType.ITEM_WEAPON) {
                 if (refinement < 1 || refinement > 5) {
-                    CommandHandler.sendMessage(sender, "Refinementå¿…é¡»åœ¨1åˆ°5ä¹‹é—´");
+                    CommandHandler.sendMessage(sender, "Refinement±ØĞëÔÚ1µ½5Ö®¼ä");
                     return;
                 }
             } else {
-                CommandHandler.sendMessage(sender, "Refinementåªé€‚ç”¨äºæ­¦å™¨");
+                CommandHandler.sendMessage(sender, "RefinementÖ»ÊÊÓÃÓÚÎäÆ÷");
                 return;
             }
         }
@@ -148,13 +148,13 @@ public final class GiveCommand implements CommandHandler {
         this.item(targetPlayer, itemData, amount, lvl, refinement);
 
         if (!itemData.isEquip()) {
-            CommandHandler.sendMessage(sender, String.format("å·²ç»æŠŠ %s ä¸ª %s ç»™äº† %s.", amount, item, target));
+            CommandHandler.sendMessage(sender, String.format("ÒÑ¾­°Ñ %s ¸ö %s ¸øÁË %s.", amount, item, target));
         } else if (itemData.getItemType() == ItemType.ITEM_WEAPON) {
             CommandHandler.sendMessage(sender,
-                    String.format("å·²ç»æŠŠ %s ä¸ª %s çº§çš„ %s ç»™äº† %sï¼ŒåŒ…å«refinement %s", amount, lvl, item, target, refinement));
+                    String.format("ÒÑ¾­°Ñ %s ¸ö %s ¼¶µÄ %s ¸øÁË %s£¬°üº¬refinement %s", amount, lvl, item, target, refinement));
         } else {
             CommandHandler.sendMessage(sender,
-                    String.format("å·²ç»æŠŠ %s ä¸ª %s çº§çš„ %s ç»™äº† %s", amount, lvl, item, target));
+                    String.format("ÒÑ¾­°Ñ %s ¸ö %s ¼¶µÄ %s ¸øÁË %s", amount, lvl, item, target));
         }
     }
 

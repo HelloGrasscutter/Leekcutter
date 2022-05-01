@@ -8,7 +8,7 @@ import emu.grasscutter.game.player.Player;
 import java.util.*;
 
 @Command(label = "help", usage = "help [command]",
-        description = "ç»™ä½ å‘é€ä¸€äº›å¸®åŠ©æ¶ˆæ¯")
+        description = "¸øÄã·¢ËÍÒ»Ğ©°ïÖúÏûÏ¢")
 public final class HelpCommand implements CommandHandler {
 
     @Override
@@ -32,20 +32,20 @@ public final class HelpCommand implements CommandHandler {
             CommandHandler handler = CommandMap.getInstance().getHandler(command);
             StringBuilder builder = new StringBuilder(player == null ? "\nHelp - " : "Help - ").append(command).append(": \n");
             if (handler == null) {
-                builder.append("æ²¡æœ‰æ‰¾åˆ°ä»ä½•å¯ç”¨æŒ‡ä»¤");
+                builder.append("Ã»ÓĞÕÒµ½ÈÔºÎ¿ÉÓÃÖ¸Áî");
             } else {
                 Command annotation = handler.getClass().getAnnotation(Command.class);
 
                 builder.append("   ").append(annotation.description()).append("\n");
-                builder.append("   ç”¨æ³•: ").append(annotation.usage());
+                builder.append("   ÓÃ·¨: ").append(annotation.usage());
                 if (annotation.aliases().length >= 1) {
-                    builder.append("\n").append("   åˆ«å: ");
+                    builder.append("\n").append("   ±ğÃû: ");
                     for (String alias : annotation.aliases()) {
                         builder.append(alias).append(" ");
                     }
                 }
                 if (player != null && !Objects.equals(annotation.permission(), "") && !player.getAccount().hasPermission(annotation.permission())) {
-                    builder.append("\n è­¦å‘Šï¼šæ‚¨ä¼¼ä¹å¹¶æ²¡æœ‰æ‰§è¡Œæ­¤å‘½ä»¤çš„æƒé™");
+                    builder.append("\n ¾¯¸æ£ºÄúËÆºõ²¢Ã»ÓĞÖ´ĞĞ´ËÃüÁîµÄÈ¨ÏŞ");
                 }
             }
 
@@ -55,13 +55,13 @@ public final class HelpCommand implements CommandHandler {
 
     void SendAllHelpMessage(Player player, List<Command> annotations) {
         if (player == null) {
-            StringBuilder builder = new StringBuilder("\nå¯ç”¨å‘½ä»¤ï¼š\n");
+            StringBuilder builder = new StringBuilder("\n¿ÉÓÃÃüÁî£º\n");
             annotations.forEach(annotation -> {
                 builder.append(annotation.label()).append("\n");
                 builder.append("   ").append(annotation.description()).append("\n");
-                builder.append("   ç”¨æ³•: ").append(annotation.usage());
+                builder.append("   ÓÃ·¨: ").append(annotation.usage());
                 if (annotation.aliases().length >= 1) {
-                    builder.append("\n").append("   åˆ«å: ");
+                    builder.append("\n").append("   ±ğÃû: ");
                     for (String alias : annotation.aliases()) {
                         builder.append(alias).append(" ");
                     }
@@ -72,13 +72,13 @@ public final class HelpCommand implements CommandHandler {
 
             CommandHandler.sendMessage(null, builder.toString());
         } else {
-            CommandHandler.sendMessage(player, "å¯ç”¨å‘½ä»¤:");
+            CommandHandler.sendMessage(player, "¿ÉÓÃÃüÁî:");
             annotations.forEach(annotation -> {
                 StringBuilder builder = new StringBuilder(annotation.label()).append("\n");
                 builder.append("   ").append(annotation.description()).append("\n");
-                builder.append("   ç”¨æ³•: ").append(annotation.usage());
+                builder.append("   ÓÃ·¨: ").append(annotation.usage());
                 if (annotation.aliases().length >= 1) {
-                    builder.append("\n").append("   åˆ«å: ");
+                    builder.append("\n").append("   ±ğÃû: ");
                     for (String alias : annotation.aliases()) {
                         builder.append(alias).append(" ");
                     }

@@ -8,13 +8,13 @@ import emu.grasscutter.game.player.Player;
 import java.util.List;
 
 @Command(label = "godmode", usage = "godmode [playerId]",
-        description = "å¼€çºªè®©ä½ æ— æ•Œ", permission = "player.godmode")
+        description = "¿ª¼ÍÈÃÄãÎŞµĞ", permission = "player.godmode")
 public final class GodModeCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
         if (sender == null) {
-            CommandHandler.sendMessage(null, "è¯·åœ¨æ¸¸æˆå†…æ‰§è¡Œè¯¥æŒ‡ä»¤");
+            CommandHandler.sendMessage(null, "ÇëÔÚÓÎÏ·ÄÚÖ´ĞĞ¸ÃÖ¸Áî");
             return; // TODO: toggle player's godmode statue from console or other players
         }
 
@@ -26,7 +26,7 @@ public final class GodModeCommand implements CommandHandler {
                     target = sender.getUid();
                 }
             } catch (NumberFormatException e) {
-                CommandHandler.sendMessage(sender, "æ— æ•ˆçš„ç©å®¶id");
+                CommandHandler.sendMessage(sender, "ÎŞĞ§µÄÍæ¼Òid");
                 return;
             }
         } else {
@@ -34,12 +34,12 @@ public final class GodModeCommand implements CommandHandler {
         }
         Player targetPlayer = Grasscutter.getGameServer().getPlayerByUid(target);
         if (targetPlayer == null) {
-            CommandHandler.sendMessage(sender, "ç©å®¶éƒ½æ‰¾ä¸åˆ°è¿˜å¼€nmçºª");
+            CommandHandler.sendMessage(sender, "Íæ¼Ò¶¼ÕÒ²»µ½»¹¿ªnm¼Í");
             return;
         }
 
         targetPlayer.setGodmode(!targetPlayer.inGodmode());
-        sender.dropMessage("çºªç°åœ¨å·²ç»" + (targetPlayer.inGodmode() ? "å¼€å¯ï¼Œ" : "å…³é—­ï¼Œ") +
-                "åªä¸ºæˆ‘ä»¬çš„çºªç‹— " + targetPlayer.getNickname() + " ã€‚");
+        sender.dropMessage("¼ÍÏÖÔÚÒÑ¾­" + (targetPlayer.inGodmode() ? "¿ªÆô£¬" : "¹Ø±Õ£¬") +
+                "Ö»ÎªÎÒÃÇµÄ¼Í¹· " + targetPlayer.getNickname() + " ¡£");
     }
 }

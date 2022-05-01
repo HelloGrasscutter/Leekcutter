@@ -10,12 +10,12 @@ import emu.grasscutter.server.packet.send.PacketAvatarLifeStateChangeNotify;
 import java.util.List;
 
 @Command(label = "heal", usage = "heal|h", aliases = {"h"},
-        description = "æ²»ç–—é˜Ÿä¼ä¸­çš„æ‰€æœ‰è§’è‰²", permission = "player.heal")
+        description = "ÖÎÁÆ¶ÓÎéÖĞµÄËùÓĞ½ÇÉ«", permission = "player.heal")
 public final class HealCommand implements CommandHandler {
     @Override
     public void execute(Player sender, List<String> args) {
         if (sender == null) {
-            CommandHandler.sendMessage(null, "è¯·åœ¨æ¸¸æˆå†…æ‰§è¡Œè¯¥æŒ‡ä»¤");
+            CommandHandler.sendMessage(null, "ÇëÔÚÓÎÏ·ÄÚÖ´ĞĞ¸ÃÖ¸Áî");
             return;
         }
         
@@ -30,6 +30,6 @@ public final class HealCommand implements CommandHandler {
                 entity.getWorld().broadcastPacket(new PacketAvatarLifeStateChangeNotify(entity.getAvatar()));
             }
         });
-        CommandHandler.sendMessage(sender, "é˜Ÿä¼ä¸­æ‰€æœ‰çš„è§’è‰²å‡å·²è¢«æ²»ç–—");
+        CommandHandler.sendMessage(sender, "¶ÓÎéÖĞËùÓĞµÄ½ÇÉ«¾ùÒÑ±»ÖÎÁÆ");
     }
 }

@@ -8,14 +8,14 @@ import emu.grasscutter.game.player.Player;
 import java.util.List;
 
 @Command(label = "stop", usage = "stop",
-        description = "å…³é—­æœåŠ¡ç«¯", permission = "server.stop")
+        description = "¹Ø±Õ·şÎñ¶Ë", permission = "server.stop")
 public final class StopCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
-        CommandHandler.sendMessage(null, "æœåŠ¡å™¨å…³é—­ä¸­...");
+        CommandHandler.sendMessage(null, "·şÎñÆ÷¹Ø±ÕÖĞ...");
         for (Player p : Grasscutter.getGameServer().getPlayers().values()) {
-            CommandHandler.sendMessage(p, "æœåŠ¡å™¨å…³é—­ä¸­...");
+            CommandHandler.sendMessage(p, "·şÎñÆ÷¹Ø±ÕÖĞ...");
         }
 
         System.exit(1);

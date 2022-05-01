@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Command(label = "sendmail", usage = "sendmail <userId|all|help> [templateId]",
-        description = "å‘æŒ‡å®šç”¨æˆ·å‘é€é‚®ä»¶ã€‚æ­¤å‘½ä»¤çš„ç”¨æ³•ä¼šæ ¹æ®å…¶å‚æ•°è€Œæ”¹å˜ã€‚ã€æ­¤æŒ‡ä»¤æš‚æ— æ±‰åŒ–ã€‘", permission = "server.sendmail")
+        description = "ÏòÖ¸¶¨ÓÃ»§·¢ËÍÓÊ¼ş¡£´ËÃüÁîµÄÓÃ·¨»á¸ù¾İÆä²ÎÊı¶ø¸Ä±ä¡£¡¾´ËÖ¸ÁîÔİÎŞºº»¯¡¿", permission = "server.sendmail")
 public final class SendMailCommand implements CommandHandler {
 
     // TODO: You should be able to do /sendmail and then just send subsequent messages until you finish
@@ -37,7 +37,7 @@ public final class SendMailCommand implements CommandHandler {
                     MailBuilder mailBuilder;
                     switch (args.get(0).toLowerCase()) {
                         case "help" -> {
-                            CommandHandler.sendMessage(sender, this.getClass().getAnnotation(Command.class).description() + "\nç”¨æ³•: " + this.getClass().getAnnotation(Command.class).usage());
+                            CommandHandler.sendMessage(sender, this.getClass().getAnnotation(Command.class).description() + "\nÓÃ·¨: " + this.getClass().getAnnotation(Command.class).usage());
                             return;
                         }
                         case "all" -> mailBuilder = new MailBuilder(true, new Mail());
@@ -45,7 +45,7 @@ public final class SendMailCommand implements CommandHandler {
                             if (DatabaseHelper.getPlayerById(Integer.parseInt(args.get(0))) != null) {
                                 mailBuilder = new MailBuilder(Integer.parseInt(args.get(0)), new Mail());
                             } else {
-                                CommandHandler.sendMessage(sender, "æ­¤id '" + args.get(0) + "' ä¸å­˜åœ¨");
+                                CommandHandler.sendMessage(sender, "´Ëid '" + args.get(0) + "' ²»´æÔÚ");
                                 return;
                             }
                         }

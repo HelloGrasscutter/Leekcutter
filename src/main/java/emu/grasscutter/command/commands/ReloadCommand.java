@@ -8,17 +8,17 @@ import emu.grasscutter.game.player.Player;
 import java.util.List;
 
 @Command(label = "reload", usage = "reload",
-        description = "é‡æ–°è½½å…¥æœåŠ¡å™¨é…ç½®æ–‡ä»¶", permission = "server.reload")
+        description = "ÖØĞÂÔØÈë·şÎñÆ÷ÅäÖÃÎÄ¼ş", permission = "server.reload")
 public final class ReloadCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
-        CommandHandler.sendMessage(sender, "æ­£åœ¨é‡è½½æœåŠ¡å™¨é…ç½®æ–‡ä»¶...");
+        CommandHandler.sendMessage(sender, "ÕıÔÚÖØÔØ·şÎñÆ÷ÅäÖÃÎÄ¼ş...");
         Grasscutter.loadConfig();
         Grasscutter.getGameServer().getGachaManager().load();
         Grasscutter.getGameServer().getDropManager().load();
         Grasscutter.getGameServer().getShopManager().load();
         Grasscutter.getDispatchServer().loadQueries();
-        CommandHandler.sendMessage(sender, "é‡è½½å®Œæ¯•~");
+        CommandHandler.sendMessage(sender, "ÖØÔØÍê±Ï~");
     }
 }

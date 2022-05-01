@@ -9,18 +9,18 @@ import emu.grasscutter.server.packet.send.PacketSceneAreaWeatherNotify;
 import java.util.List;
 
 @Command(label = "weather", usage = "weather <weatherId> [climateId]",
-        description = "æ”¹å˜weather", aliases = {"w"}, permission = "player.weather")
+        description = "¸Ä±äweather", aliases = {"w"}, permission = "player.weather")
 public final class WeatherCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
         if (sender == null) {
-            CommandHandler.sendMessage(null, "è¯·åœ¨æ¸¸æˆå†…æ‰§è¡Œæ­¤æŒ‡ä»¤");
+            CommandHandler.sendMessage(null, "ÇëÔÚÓÎÏ·ÄÚÖ´ĞĞ´ËÖ¸Áî");
             return;
         }
 
         if (args.size() < 1) {
-            CommandHandler.sendMessage(sender, "ç”¨æ³•: weather <weatherId> [climateId]");
+            CommandHandler.sendMessage(sender, "ÓÃ·¨: weather <weatherId> [climateId]");
             return;
         }
 
@@ -33,9 +33,9 @@ public final class WeatherCommand implements CommandHandler {
             sender.getScene().setWeather(weatherId);
             sender.getScene().setClimate(climate);
             sender.getScene().broadcastPacket(new PacketSceneAreaWeatherNotify(sender));
-            CommandHandler.sendMessage(sender, "å·²å°†å¤©æ°”ä¿®æ”¹ä¸º " + weatherId + " å¹¶å°†æ°”å€™ä¿®æ”¹ä¸º " + climateId);
+            CommandHandler.sendMessage(sender, "ÒÑ½«ÌìÆøĞŞ¸ÄÎª " + weatherId + " ²¢½«ÆøºòĞŞ¸ÄÎª " + climateId);
         } catch (NumberFormatException ignored) {
-            CommandHandler.sendMessage(sender, "æ— æ•ˆçš„ID");
+            CommandHandler.sendMessage(sender, "ÎŞĞ§µÄID");
         }
     }
 }

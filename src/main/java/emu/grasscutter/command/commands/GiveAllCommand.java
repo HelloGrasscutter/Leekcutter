@@ -14,7 +14,7 @@ import emu.grasscutter.game.player.Player;
 import java.util.*;
 
 @Command(label = "giveall", usage = "giveall [player] [amount]",
-        description = "ç»™äºˆæŒ‡å®šç©å®¶å…¨éƒ¨ç‰©å“", aliases = {"givea"}, permission = "player.giveall", threading = true)
+        description = "¸øÓèÖ¸¶¨Íæ¼ÒÈ«²¿ÎïÆ·", aliases = {"givea"}, permission = "player.giveall", threading = true)
 public final class GiveAllCommand implements CommandHandler {
 
     @Override
@@ -24,7 +24,7 @@ public final class GiveAllCommand implements CommandHandler {
         switch (args.size()) {
             case 0: // *no args*
                 if (sender == null) {
-                    CommandHandler.sendMessage(null, "è¯·åœ¨æ¸¸æˆå†…æ‰§è¡Œè¯¥æŒ‡ä»¤");
+                    CommandHandler.sendMessage(null, "ÇëÔÚÓÎÏ·ÄÚÖ´ĞĞ¸ÃÖ¸Áî");
                     return;
                 }
                 target = sender.getUid();
@@ -34,11 +34,11 @@ public final class GiveAllCommand implements CommandHandler {
                 try {
                     target = Integer.parseInt(args.get(0));
                     if (Grasscutter.getGameServer().getPlayerByUid(target) == null) {
-                        CommandHandler.sendMessage(sender, "æ— æ•ˆçš„ç©å®¶id");
+                        CommandHandler.sendMessage(sender, "ÎŞĞ§µÄÍæ¼Òid");
                         return;
                     }
                 }catch (NumberFormatException ignored){
-                    CommandHandler.sendMessage(sender, "æ— æ•ˆçš„ç©å®¶id");
+                    CommandHandler.sendMessage(sender, "ÎŞĞ§µÄÍæ¼Òid");
                     return;
                 }
                 break;
@@ -53,28 +53,28 @@ public final class GiveAllCommand implements CommandHandler {
                         amount = Integer.parseInt(args.get(1));
                     }
                 } catch (NumberFormatException ignored) {
-                    CommandHandler.sendMessage(sender, "æ— æ•ˆçš„æ•°é‡æˆ–ç©å®¶id");
+                    CommandHandler.sendMessage(sender, "ÎŞĞ§µÄÊıÁ¿»òÍæ¼Òid");
                     return;
                 }
                 break;
 
             default: // invalid
-                CommandHandler.sendMessage(null, "ç”¨æ³•: giveall [player] [amount]");
+                CommandHandler.sendMessage(null, "ÓÃ·¨: giveall [player] [amount]");
                 return;
         }
 
         Player targetPlayer = Grasscutter.getGameServer().getPlayerByUid(target);
         if (targetPlayer == null) {
-            CommandHandler.sendMessage(sender, "æŸ¥æ— æ­¤äºº");
+            CommandHandler.sendMessage(sender, "²éÎŞ´ËÈË");
             return;
         }
 
         this.giveAllItems(targetPlayer, amount);
-        CommandHandler.sendMessage(sender, "å®Œæ¯•ï¼");
+        CommandHandler.sendMessage(sender, "Íê±Ï£¡");
     }
 
     public void giveAllItems(Player player, int amount) {
-        CommandHandler.sendMessage(player, "æ­£åœ¨ç»™è¿™ä¸ªbæ‰€æœ‰ç‰©å“...");
+        CommandHandler.sendMessage(player, "ÕıÔÚ¸øÕâ¸öbËùÓĞÎïÆ·...");
 
         for (AvatarData avatarData: GameData.getAvatarDataMap().values()) {
             //Exclude test avatar

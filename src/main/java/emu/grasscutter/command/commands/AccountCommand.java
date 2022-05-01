@@ -8,18 +8,18 @@ import emu.grasscutter.game.player.Player;
 
 import java.util.List;
 
-@Command(label = "account", usage = "account <create|delete> <username> [uid]", description = "ä¿®æ”¹ç”¨æˆ·è´¦å·")
+@Command(label = "account", usage = "account <create|delete> <username> [uid]", description = "ĞŞ¸ÄÓÃ»§ÕËºÅ")
 public final class AccountCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
         if (sender != null) {
-            CommandHandler.sendMessage(sender, "è¿™ä¸ªæŒ‡ä»¤åªèƒ½åœ¨æ§åˆ¶å°ä¸Šè¿è¡Œ");
+            CommandHandler.sendMessage(sender, "Õâ¸öÖ¸ÁîÖ»ÄÜÔÚ¿ØÖÆÌ¨ÉÏÔËĞĞ");
             return;
         }
 
         if (args.size() < 2) {
-            CommandHandler.sendMessage(null, "ç”¨æ³•: account <create|delete> <username> [uid]");
+            CommandHandler.sendMessage(null, "ÓÃ·¨: account <create|delete> <username> [uid]");
             return;
         }
 
@@ -28,7 +28,7 @@ public final class AccountCommand implements CommandHandler {
 
         switch (action) {
             default:
-                CommandHandler.sendMessage(null, "ç”¨æ³•: account <create|delete> <username> [uid]");
+                CommandHandler.sendMessage(null, "ÓÃ·¨: account <create|delete> <username> [uid]");
                 return;
             case "create":
                 int uid = 0;
@@ -36,27 +36,27 @@ public final class AccountCommand implements CommandHandler {
                     try {
                         uid = Integer.parseInt(args.get(2));
                     } catch (NumberFormatException ignored) {
-                        CommandHandler.sendMessage(null, "UIDæ— æ•ˆ");
+                        CommandHandler.sendMessage(null, "UIDÎŞĞ§");
                         return;
                     }
                 }
 
                 emu.grasscutter.game.Account account = DatabaseHelper.createAccountWithId(username, uid);
                 if (account == null) {
-                    CommandHandler.sendMessage(null, "è¯·ä¸è¦å°è¯•åˆ›å»ºä¸€ä¸ªå·²å­˜åœ¨çš„è´¦å·");
+                    CommandHandler.sendMessage(null, "Çë²»Òª³¢ÊÔ´´½¨Ò»¸öÒÑ´æÔÚµÄÕËºÅ");
                     return;
                 } else {
                     account.addPermission("*");
                     account.save(); // Save account to database.
 
-                    CommandHandler.sendMessage(null, "è´¦å·å·²åˆ›å»ºï¼Œuidä¸ºï¼š" + account.getPlayerUid());
+                    CommandHandler.sendMessage(null, "ÕËºÅÒÑ´´½¨£¬uidÎª£º" + account.getPlayerUid());
                 }
                 return;
             case "delete":
                 if (DatabaseHelper.deleteAccount(username)) {
-                    CommandHandler.sendMessage(null, "è´¦å·åˆ é™¤æˆåŠŸ");
+                    CommandHandler.sendMessage(null, "ÕËºÅÉ¾³ı³É¹¦");
                 } else {
-                    CommandHandler.sendMessage(null, "æ‰¾ä¸åˆ°è¯¥è´¦å·");
+                    CommandHandler.sendMessage(null, "ÕÒ²»µ½¸ÃÕËºÅ");
                 }
         }
     }

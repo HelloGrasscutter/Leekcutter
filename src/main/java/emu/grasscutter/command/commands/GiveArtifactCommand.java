@@ -14,13 +14,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@Command(label = "giveart", usage = "giveart [player] <artifactId> <mainPropId> [<appendPropId>[,<times>]]... [level]", description = "ç»™äºˆç©å®¶æŒ‡å®šå±æ€§çš„åœ£é—ç‰©", aliases = {"gart"}, permission = "player.giveart")
+@Command(label = "giveart", usage = "giveart [player] <artifactId> <mainPropId> [<appendPropId>[,<times>]]... [level]", description = "¸øÓèÍæ¼ÒÖ¸¶¨ÊôĞÔµÄÊ¥ÒÅÎï", aliases = {"gart"}, permission = "player.giveart")
 public final class GiveArtifactCommand implements CommandHandler {
 	@Override
 	public void execute(Player sender, List<String> args) {
 		int size = args.size(), target, itemId, mainPropId, level = 1;
 		ArrayList<Integer> appendPropIdList = new ArrayList<>();
-		String msg = "ç”¨æ³•: giveart|gart [player] <artifactId> <mainPropId> [<appendPropId>[,<times>]]... [level]";
+		String msg = "ÓÃ·¨: giveart|gart [player] <artifactId> <mainPropId> [<appendPropId>[,<times>]]... [level]";
 
 		if (sender == null && size < 2) {
 			CommandHandler.sendMessage(null, msg);
@@ -70,14 +70,14 @@ public final class GiveArtifactCommand implements CommandHandler {
 
 		Player targetPlayer = Grasscutter.getGameServer().getPlayerByUid(target);
 		if (targetPlayer == null) {
-			CommandHandler.sendMessage(sender, "ç¬‘æ­»è¿™ä¸ªç©å®¶æ ¹æœ¬å°±ä¸å­˜åœ¨");
+			CommandHandler.sendMessage(sender, "Ğ¦ËÀÕâ¸öÍæ¼Ò¸ù±¾¾Í²»´æÔÚ");
 			return;
 		}
 
 		ItemData itemData = GameData.getItemDataMap().get(itemId);
 
 		if (itemData.getItemType() != ItemType.ITEM_RELIQUARY) {
-			CommandHandler.sendMessage(sender, "æŸ¥æ— æ­¤åœ£é—ç‰©ï¼Œæ­å–œä½ æˆåŠŸçš„ä»é…’å§é‡Œç‚¹äº†ä¸€ä»½ç‚’é¥­");
+			CommandHandler.sendMessage(sender, "²éÎŞ´ËÊ¥ÒÅÎï£¬¹§Ï²Äã³É¹¦µÄ´Ó¾Æ°ÉÀïµãÁËÒ»·İ³´·¹");
 			return;
 		}
 
@@ -88,7 +88,7 @@ public final class GiveArtifactCommand implements CommandHandler {
 		item.getAppendPropIdList().addAll(appendPropIdList);
 		targetPlayer.getInventory().addItem(item, ActionReason.SubfieldDrop);
 
-		CommandHandler.sendMessage(sender, String.format("å·²ç»æŠŠ %s ç»™äº† %s", itemId, target));
+		CommandHandler.sendMessage(sender, String.format("ÒÑ¾­°Ñ %s ¸øÁË %s", itemId, target));
 	}
 }
 

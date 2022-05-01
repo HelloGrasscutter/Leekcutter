@@ -11,18 +11,18 @@ import emu.grasscutter.utils.Position;
 import java.util.List;
 
 @Command(label = "spawn", usage = "spawn <entityId|entityName> [level] [amount]",
-        description = "åœ¨ä½ å‘¨å›´ç”Ÿæˆå®ä½“", permission = "server.spawn")
+        description = "ÔÚÄãÖÜÎ§Éú³ÉÊµÌå", permission = "server.spawn")
 public final class SpawnCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
         if (sender == null) {
-            CommandHandler.sendMessage(null, "è¯·åœ¨æ¸¸æˆå†…æ‰§è¡Œæ­¤æŒ‡ä»¤");
+            CommandHandler.sendMessage(null, "ÇëÔÚÓÎÏ·ÄÚÖ´ĞĞ´ËÖ¸Áî");
             return;
         }
 
         if (args.size() < 1) {
-            CommandHandler.sendMessage(sender, "ç”¨æ³•: spawn <entityId|entityName> [amount]");
+            CommandHandler.sendMessage(sender, "ÓÃ·¨: spawn <entityId|entityName> [amount]");
             return;
         }
 
@@ -33,7 +33,7 @@ public final class SpawnCommand implements CommandHandler {
 
             MonsterData entityData = GameData.getMonsterDataMap().get(entity);
             if (entityData == null) {
-                CommandHandler.sendMessage(sender, "æ— æ•ˆçš„å®ä½“id");
+                CommandHandler.sendMessage(sender, "ÎŞĞ§µÄÊµÌåid");
                 return;
             }
 
@@ -43,9 +43,9 @@ public final class SpawnCommand implements CommandHandler {
                 EntityMonster monster = new EntityMonster(sender.getScene(), entityData, pos, level);
                 sender.getScene().addEntity(monster);
             }
-            CommandHandler.sendMessage(sender, String.format("å·²ç”Ÿæˆ %s ä¸ª %s.", amount, entity));
+            CommandHandler.sendMessage(sender, String.format("ÒÑÉú³É %s ¸ö %s.", amount, entity));
         } catch (NumberFormatException ignored) {
-            CommandHandler.sendMessage(sender, "æ— æ•ˆçš„ç‰©å“æˆ–ç©å®¶id");
+            CommandHandler.sendMessage(sender, "ÎŞĞ§µÄÎïÆ·»òÍæ¼Òid");
         }
     }
 }

@@ -9,20 +9,20 @@ import emu.grasscutter.game.player.Player;
 import java.util.List;
 
 @Command(label = "resetconst", usage = "resetconst [all]",
-        description = "é‡ç½®å½“å‰è§’è‰²çš„å‘½åº§,é‡æ–°ç™»å½•å³å¯ç”Ÿæ•ˆ",
+        description = "ÖØÖÃµ±Ç°½ÇÉ«µÄÃü×ù,ÖØĞÂµÇÂ¼¼´¿ÉÉúĞ§",
         aliases = {"resetconstellation"}, permission = "player.resetconstellation")
 public final class ResetConstCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
         if (sender == null) {
-            CommandHandler.sendMessage(null, "è¯·åœ¨æ¸¸æˆå†…æ‰§è¡Œæ­¤æŒ‡ä»¤");
+            CommandHandler.sendMessage(null, "ÇëÔÚÓÎÏ·ÄÚÖ´ĞĞ´ËÖ¸Áî");
             return;
         }
 
         if (args.size() > 0 && args.get(0).equalsIgnoreCase("all")) {
             sender.getAvatars().forEach(this::resetConstellation);
-            sender.dropMessage("é‡ç½®æ‰€æœ‰è§’è‰²çš„å‘½åº§");
+            sender.dropMessage("ÖØÖÃËùÓĞ½ÇÉ«µÄÃü×ù");
         } else {
             EntityAvatar entity = sender.getTeamManager().getCurrentAvatarEntity();
             if (entity == null) {
@@ -32,7 +32,7 @@ public final class ResetConstCommand implements CommandHandler {
             Avatar avatar = entity.getAvatar();
             this.resetConstellation(avatar);
 
-            sender.dropMessage(avatar.getAvatarData().getName() + "çš„å‘½åº§å·²é‡ç½®ã€‚é‡æ–°ç™»é™†ä»¥æŸ¥çœ‹ç»“æœ");
+            sender.dropMessage(avatar.getAvatarData().getName() + "µÄÃü×ùÒÑÖØÖÃ¡£ÖØĞÂµÇÂ½ÒÔ²é¿´½á¹û");
         }
     }
 

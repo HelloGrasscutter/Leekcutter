@@ -7,12 +7,12 @@ import emu.grasscutter.game.player.Player;
 import java.util.List;
 
 @Command(label = "coop", usage = "coop",
-        description = "å¼ºåˆ¶æŸä½ç©å®¶è¿›å…¥æŒ‡å®šç©å®¶çš„å¤šäººä¸–ç•Œ", permission = "server.coop")
+        description = "Ç¿ÖÆÄ³Î»Íæ¼Ò½øÈëÖ¸¶¨Íæ¼ÒµÄ¶àÈËÊÀ½ç", permission = "server.coop")
 public final class CoopCommand implements CommandHandler {
     @Override
     public void execute(Player sender, List<String> args) {
         if (args.size() < 2) {
-            CommandHandler.sendMessage(sender, "ç”¨æ³•: coop <playerId> <target playerId>");
+            CommandHandler.sendMessage(sender, "ÓÃ·¨: coop <playerId> <target playerId>");
             return;
         }
         
@@ -22,7 +22,7 @@ public final class CoopCommand implements CommandHandler {
             Player host = sender.getServer().getPlayerByUid(hostId);
             Player want = sender.getServer().getPlayerByUid(tid);
             if (host == null || want == null) {
-                CommandHandler.sendMessage(sender, "ä¸¤ä¸ªç©å®¶ä¸­çš„å…¶ä¸­ä¸€ä¸ªæˆ–ä¸¤ä¸ªä¸ºç¦»çº¿çŠ¶æ€");
+                CommandHandler.sendMessage(sender, "Á½¸öÍæ¼ÒÖĞµÄÆäÖĞÒ»¸ö»òÁ½¸öÎªÀëÏß×´Ì¬");
                 return;
             }
             if (want.isInMultiplayer()) {
@@ -31,7 +31,7 @@ public final class CoopCommand implements CommandHandler {
             sender.getServer().getMultiplayerManager().applyEnterMp(want, hostId);
             sender.getServer().getMultiplayerManager().applyEnterMpReply(host, tid, true);
         } catch (Exception e) {
-            CommandHandler.sendMessage(sender, "æ— æ•ˆçš„ç©å®¶id");
+            CommandHandler.sendMessage(sender, "ÎŞĞ§µÄÍæ¼Òid");
         }
     }
 }

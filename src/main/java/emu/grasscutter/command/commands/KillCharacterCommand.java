@@ -13,7 +13,7 @@ import emu.grasscutter.server.packet.send.PacketLifeStateChangeNotify;
 import java.util.List;
 
 @Command(label = "killcharacter", usage = "killcharacter [playerId]", aliases = {"suicide", "kill"},
-        description = "æ€æ­»ç©å®¶å½“å‰è§’è‰²", permission = "player.killcharacter")
+        description = "É±ËÀÍæ¼Òµ±Ç°½ÇÉ«", permission = "player.killcharacter")
 public final class KillCharacterCommand implements CommandHandler {
 
     @Override
@@ -25,11 +25,11 @@ public final class KillCharacterCommand implements CommandHandler {
                 try {
                     target = Integer.parseInt(args.get(0));
                 } catch (NumberFormatException e) {
-                    CommandHandler.sendMessage(null, "æ— æ•ˆç©å®¶id");
+                    CommandHandler.sendMessage(null, "ÎŞĞ§Íæ¼Òid");
                     return;
                 }
             } else {
-                CommandHandler.sendMessage(null, "ç”¨æ³•: /killcharacter [playerId]");
+                CommandHandler.sendMessage(null, "ÓÃ·¨: /killcharacter [playerId]");
                 return;
             }
         } else {
@@ -40,7 +40,7 @@ public final class KillCharacterCommand implements CommandHandler {
                         target = sender.getUid();
                     }
                 } catch (NumberFormatException e) {
-                    CommandHandler.sendMessage(sender, "æ— æ•ˆç©å®¶id");
+                    CommandHandler.sendMessage(sender, "ÎŞĞ§Íæ¼Òid");
                     return;
                 }
             } else {
@@ -50,7 +50,7 @@ public final class KillCharacterCommand implements CommandHandler {
 
         Player targetPlayer = Grasscutter.getGameServer().getPlayerByUid(target);
         if (targetPlayer == null) {
-            CommandHandler.sendMessage(sender, "ç©å®¶ä¸å­˜åœ¨æˆ–ç¦»çº¿");
+            CommandHandler.sendMessage(sender, "Íæ¼Ò²»´æÔÚ»òÀëÏß");
             return;
         }
 
@@ -63,6 +63,6 @@ public final class KillCharacterCommand implements CommandHandler {
         targetPlayer.getScene().removeEntity(entity);
         entity.onDeath(0);
 
-        CommandHandler.sendMessage(sender, "å·²æ€æ­» " + targetPlayer.getNickname() + " çš„è§’è‰²");
+        CommandHandler.sendMessage(sender, "ÒÑÉ±ËÀ " + targetPlayer.getNickname() + " µÄ½ÇÉ«");
     }
 }

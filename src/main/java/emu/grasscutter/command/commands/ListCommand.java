@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @Command(label = "list", usage = "list [uid]",
-        description = "åˆ—å‡ºåœ¨çº¿ç©å®¶", aliases = {"players"})
+        description = "ÁĞ³öÔÚÏßÍæ¼Ò", aliases = {"players"})
 public final class ListCommand implements CommandHandler {
 
     @Override
@@ -21,7 +21,7 @@ public final class ListCommand implements CommandHandler {
             needUID = args.get(0).equals("uid");
         }
 
-        CommandHandler.sendMessage(sender, String.format("æœ‰ %s ä¸ªç©å®¶åœ¨çº¿ï¼Œå®ƒä»¬åˆ†åˆ«æ˜¯ï¼š", playersMap.size()));
+        CommandHandler.sendMessage(sender, String.format("ÓĞ %s ¸öÍæ¼ÒÔÚÏß£¬ËüÃÇ·Ö±ğÊÇ£º", playersMap.size()));
 
         if (playersMap.size() != 0) {
             StringBuilder playerSet = new StringBuilder();

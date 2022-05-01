@@ -7,17 +7,17 @@ import emu.grasscutter.game.player.Player;
 import java.util.List;
 
 @Command(label = "changescene", usage = "changescene <scene id>",
-        description = "åˆ‡æ¢ä½ çš„åœºæ™¯ï¼ˆSceneï¼‰", aliases = {"scene"}, permission = "player.changescene")
+        description = "ÇĞ»»ÄãµÄ³¡¾°£¨Scene£©", aliases = {"scene"}, permission = "player.changescene")
 public final class ChangeSceneCommand implements CommandHandler {
     @Override
     public void execute(Player sender, List<String> args) {
         if (sender == null) {
-            CommandHandler.sendMessage(null, "è¯·åœ¨æ¸¸æˆé‡Œæ‰§è¡Œè¯¥æŒ‡ä»¤");
+            CommandHandler.sendMessage(null, "ÇëÔÚÓÎÏ·ÀïÖ´ĞĞ¸ÃÖ¸Áî");
             return;
         }
 
         if (args.size() < 1) {
-            CommandHandler.sendMessage(sender, "ç”¨æ³•: changescene <scene id>");
+            CommandHandler.sendMessage(sender, "ÓÃ·¨: changescene <scene id>");
             return;
         }
 
@@ -25,18 +25,18 @@ public final class ChangeSceneCommand implements CommandHandler {
             int sceneId = Integer.parseInt(args.get(0));
             
             if (sceneId == sender.getSceneId()) {
-            	CommandHandler.sendMessage(sender, "ä½ æœ¬èº«å·²ç»åœ¨æ­¤åœºæ™¯é‡Œè¾£ï¼");
+            	CommandHandler.sendMessage(sender, "Äã±¾ÉíÒÑ¾­ÔÚ´Ë³¡¾°ÀïÀ±£¡");
             	return;
             }
             
             boolean result = sender.getWorld().transferPlayerToScene(sender, sceneId, sender.getPos());
-            CommandHandler.sendMessage(sender, "å°è¯•åˆ‡æ¢è‡³åœºæ™¯ï¼š " + sceneId);
+            CommandHandler.sendMessage(sender, "³¢ÊÔÇĞ»»ÖÁ³¡¾°£º " + sceneId);
             
             if (!result) {
-                CommandHandler.sendMessage(sender, "æ‰¾ä¸åˆ°æ­¤åœºæ™¯");
+                CommandHandler.sendMessage(sender, "ÕÒ²»µ½´Ë³¡¾°");
             }
         } catch (Exception e) {
-            CommandHandler.sendMessage(sender, "æŠ¥é”™äº†ï¼é”™è¯¯ä¿¡æ¯ï¼š" + e + "è®°ä½ï¼Œç”¨æ³•æ˜¯: changescene <scene id>");
+            CommandHandler.sendMessage(sender, "±¨´íÁË£¡´íÎóĞÅÏ¢£º" + e + "¼Ç×¡£¬ÓÃ·¨ÊÇ: changescene <scene id>");
         }
     }
 }

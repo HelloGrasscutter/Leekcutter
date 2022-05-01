@@ -9,27 +9,27 @@ import emu.grasscutter.utils.Position;
 import java.util.List;
 
 @Command(label = "teleport", usage = "teleport [@player id] <x> <y> <z> [scene id]", aliases = {"tp"},
-        description = "æ”¹å˜ç©å®¶çš„ä½ç½®è‡³æŒ‡å®šåæ ‡", permission = "player.teleport")
+        description = "¸Ä±äÍæ¼ÒµÄÎ»ÖÃÖÁÖ¸¶¨×ø±ê", permission = "player.teleport")
 public final class TeleportCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
         int target;
         if (args.size() < (sender == null ? 4 : 3)) {
-            CommandHandler.sendMessage(sender, sender == null ? "ç”¨æ³•: /tp @<player id> <x> <y> <z> [scene id]" :
-                    "ç”¨æ³•: /tp [@<player id>] <x> <y> <z> [scene id]");
+            CommandHandler.sendMessage(sender, sender == null ? "ÓÃ·¨: /tp @<player id> <x> <y> <z> [scene id]" :
+                    "ÓÃ·¨: /tp [@<player id>] <x> <y> <z> [scene id]");
             return;
         }
         if (args.get(0).startsWith("@")) {
             try {
                 target = Integer.parseInt(args.get(0).substring(1));
             } catch (NumberFormatException e) {
-                CommandHandler.sendMessage(sender, "æ— æ•ˆçš„ç©å®¶ID");
+                CommandHandler.sendMessage(sender, "ÎŞĞ§µÄÍæ¼ÒID");
                 return;
             }
         } else {
             if (sender == null) {
-                CommandHandler.sendMessage(null, "å¿…é¡»æŒ‡å®šç©å®¶id");
+                CommandHandler.sendMessage(null, "±ØĞëÖ¸¶¨Íæ¼Òid");
                 return;
             }
             target = sender.getUid();
@@ -37,7 +37,7 @@ public final class TeleportCommand implements CommandHandler {
 
         Player targetPlayer = Grasscutter.getGameServer().getPlayerByUid(target);
         if (targetPlayer == null) {
-            CommandHandler.sendMessage(sender, "ç©å®¶ä¸å­˜åœ¨æˆ–å¤„äºç¦»çº¿çŠ¶æ€");
+            CommandHandler.sendMessage(sender, "Íæ¼Ò²»´æÔÚ»ò´¦ÓÚÀëÏß×´Ì¬");
             return;
         }
         args = args.subList(args.get(0).startsWith("@") ? 1 : 0, args.size());
@@ -80,12 +80,12 @@ public final class TeleportCommand implements CommandHandler {
             Position target_pos = new Position(x, y, z);
             boolean result = targetPlayer.getWorld().transferPlayerToScene(targetPlayer, sceneId, target_pos);
             if (!result) {
-                CommandHandler.sendMessage(sender, "æ— æ•ˆçš„åæ ‡");
+                CommandHandler.sendMessage(sender, "ÎŞĞ§µÄ×ø±ê");
             } else {
-                CommandHandler.sendMessage(sender, "ä¼ é€è‡³ " + targetPlayer.getNickname() + " to " + x + "," + y + "," + z + " in scene " + sceneId);
+                CommandHandler.sendMessage(sender, "´«ËÍÖÁ " + targetPlayer.getNickname() + " to " + x + "," + y + "," + z + " in scene " + sceneId);
             }
         } catch (NumberFormatException ignored) {
-            CommandHandler.sendMessage(sender, "æ— æ•ˆçš„åæ ‡");
+            CommandHandler.sendMessage(sender, "ÎŞĞ§µÄ×ø±ê");
         }
     }
 }

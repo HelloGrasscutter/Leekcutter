@@ -7,14 +7,14 @@ import emu.grasscutter.game.player.Player;
 
 import java.util.List;
 
-@Command(label = "say", usage = "say <player> <message>", description = "ä½œä¸ºæœåŠ¡å™¨å‘é€æ¶ˆæ¯ç»™ç©å®¶",
+@Command(label = "say", usage = "say <player> <message>", description = "×÷Îª·şÎñÆ÷·¢ËÍÏûÏ¢¸øÍæ¼Ò",
         aliases = {"sendservmsg", "sendservermessage", "sendmessage"}, permission = "server.sendmessage")
 public final class SendMessageCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
         if (args.size() < 2) {
-            CommandHandler.sendMessage(null, "ç”¨æ³•: sendmessage <player> <message>");
+            CommandHandler.sendMessage(null, "ÓÃ·¨: sendmessage <player> <message>");
             return;
         }
 
@@ -24,14 +24,14 @@ public final class SendMessageCommand implements CommandHandler {
 
             Player targetPlayer = Grasscutter.getGameServer().getPlayerByUid(target);
             if (targetPlayer == null) {
-                CommandHandler.sendMessage(sender, "æ²¡æœ‰è¿™ä¸ªç©å®¶");
+                CommandHandler.sendMessage(sender, "Ã»ÓĞÕâ¸öÍæ¼Ò");
                 return;
             }
 
             CommandHandler.sendMessage(targetPlayer, message);
-            CommandHandler.sendMessage(sender, "æ¶ˆæ¯å·²å‘é€");
+            CommandHandler.sendMessage(sender, "ÏûÏ¢ÒÑ·¢ËÍ");
         } catch (NumberFormatException ignored) {
-            CommandHandler.sendMessage(sender, "æ— æ•ˆçš„ç©å®¶id");
+            CommandHandler.sendMessage(sender, "ÎŞĞ§µÄÍæ¼Òid");
         }
     }
 }

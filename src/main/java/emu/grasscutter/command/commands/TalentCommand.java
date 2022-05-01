@@ -12,29 +12,29 @@ import emu.grasscutter.server.packet.send.PacketAvatarSkillUpgradeRsp;
 import java.util.List;
 
 @Command(label = "talent", usage = "talent <talentID> <value>",
-        description = "è®¾ç½®å½“å‰è§’è‰²çš„å¤©èµ‹ç­‰çº§", permission = "player.settalent")
+        description = "ÉèÖÃµ±Ç°½ÇÉ«µÄÌì¸³µÈ¼¶", permission = "player.settalent")
 public final class TalentCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
         if (sender == null) {
-            CommandHandler.sendMessage(null, "è¯·åœ¨æ¸¸æˆå†…æ‰§è¡Œè¯¥æŒ‡ä»¤");
+            CommandHandler.sendMessage(null, "ÇëÔÚÓÎÏ·ÄÚÖ´ĞĞ¸ÃÖ¸Áî");
             return;
         }
 
         if (args.size() < 1){
-            CommandHandler.sendMessage(sender, "è®¾å®šå¤©èµ‹ç­‰çº§: /talent set <talentID> <value>");
-            CommandHandler.sendMessage(sender, "å¦ä¸€ç§è®¾å®šå¤©èµ‹ç­‰çº§çš„æ–¹æ³•: /talent <n or e or q> <value>");
-            CommandHandler.sendMessage(sender, "è·å–å¤©èµ‹id: /talent getid");
+            CommandHandler.sendMessage(sender, "Éè¶¨Ìì¸³µÈ¼¶: /talent set <talentID> <value>");
+            CommandHandler.sendMessage(sender, "ÁíÒ»ÖÖÉè¶¨Ìì¸³µÈ¼¶µÄ·½·¨: /talent <n or e or q> <value>");
+            CommandHandler.sendMessage(sender, "»ñÈ¡Ìì¸³id: /talent getid");
             return;
         }
 
         String cmdSwitch = args.get(0);
         switch (cmdSwitch) {
             default:
-                CommandHandler.sendMessage(sender, "è®¾å®šå¤©èµ‹ç­‰çº§: /talent set <talentID> <value>");
-                CommandHandler.sendMessage(sender, "å¦ä¸€ç§è®¾å®šå¤©èµ‹ç­‰çº§çš„æ–¹æ³•: /talent <n or e or q> <value>");
-                CommandHandler.sendMessage(sender, "è·å–å¤©èµ‹id: /talent getid");
+                CommandHandler.sendMessage(sender, "Éè¶¨Ìì¸³µÈ¼¶: /talent set <talentID> <value>");
+                CommandHandler.sendMessage(sender, "ÁíÒ»ÖÖÉè¶¨Ìì¸³µÈ¼¶µÄ·½·¨: /talent <n or e or q> <value>");
+                CommandHandler.sendMessage(sender, "»ñÈ¡Ìì¸³id: /talent getid");
             return;
             case "set":
                     try {
@@ -49,12 +49,12 @@ public final class TalentCommand implements CommandHandler {
                         int currentLevelE = avatar.getSkillLevelMap().get(skillIdE);
                         int currentLevelQ = avatar.getSkillLevelMap().get(skillIdQ);
                         if (args.size() < 2){
-                            CommandHandler.sendMessage(sender, "è®¾ç½®å¤©èµ‹ç­‰çº§: /talent set <talentID> <value>");
-                            CommandHandler.sendMessage(sender, "è·å–å¤©èµ‹id: /talent getid");
+                            CommandHandler.sendMessage(sender, "ÉèÖÃÌì¸³µÈ¼¶: /talent set <talentID> <value>");
+                            CommandHandler.sendMessage(sender, "»ñÈ¡Ìì¸³id: /talent getid");
                             return;
                         }
                         if (nextLevel > 16){ 
-                            CommandHandler.sendMessage(sender, "å¤©èµ‹ç­‰çº§æ— æ•ˆï¼Œç­‰çº§åº”ä½äº16ï¼");
+                            CommandHandler.sendMessage(sender, "Ìì¸³µÈ¼¶ÎŞĞ§£¬µÈ¼¶Ó¦µÍÓÚ16£¡");
                             return;
                         }
                             if (skillId == skillIdNorAtk){ 
@@ -65,7 +65,7 @@ public final class TalentCommand implements CommandHandler {
                             // Packet
                             sender.sendPacket(new PacketAvatarSkillChangeNotify(avatar, skillIdNorAtk, currentLevelNorAtk, nextLevel));
                             sender.sendPacket(new PacketAvatarSkillUpgradeRsp(avatar, skillIdNorAtk, currentLevelNorAtk, nextLevel));
-                            CommandHandler.sendMessage(sender, "æ™®æ”»å¤©èµ‹ç­‰çº§è®¾ç½®ä¸º " + nextLevel + ".");
+                            CommandHandler.sendMessage(sender, "ÆÕ¹¥Ìì¸³µÈ¼¶ÉèÖÃÎª " + nextLevel + ".");
                         }    
                         if (skillId == skillIdE){ 
                             // Upgrade skill
@@ -75,7 +75,7 @@ public final class TalentCommand implements CommandHandler {
                             // Packet
                             sender.sendPacket(new PacketAvatarSkillChangeNotify(avatar, skillIdE, currentLevelE, nextLevel));
                             sender.sendPacket(new PacketAvatarSkillUpgradeRsp(avatar, skillIdE, currentLevelE, nextLevel));
-                            CommandHandler.sendMessage(sender, "EæŠ€èƒ½å¤©èµ‹ç­‰çº§è®¾ç½®ä¸º " + nextLevel + ".");
+                            CommandHandler.sendMessage(sender, "E¼¼ÄÜÌì¸³µÈ¼¶ÉèÖÃÎª " + nextLevel + ".");
                         }
                         if (skillId == skillIdQ){ 
                             // Upgrade skill
@@ -85,11 +85,11 @@ public final class TalentCommand implements CommandHandler {
                             // Packet
                             sender.sendPacket(new PacketAvatarSkillChangeNotify(avatar, skillIdQ, currentLevelQ, nextLevel));
                             sender.sendPacket(new PacketAvatarSkillUpgradeRsp(avatar, skillIdQ, currentLevelQ, nextLevel));
-                            CommandHandler.sendMessage(sender, "QæŠ€èƒ½å¤©èµ‹ç­‰çº§è®¾ç½®ä¸º " + nextLevel + ".");
+                            CommandHandler.sendMessage(sender, "Q¼¼ÄÜÌì¸³µÈ¼¶ÉèÖÃÎª " + nextLevel + ".");
                         }       
                                 
                     } catch (NumberFormatException ignored) {
-                        CommandHandler.sendMessage(sender, "æ— æ•ˆçš„æŠ€èƒ½id");
+                        CommandHandler.sendMessage(sender, "ÎŞĞ§µÄ¼¼ÄÜid");
                         return;
                     }
                 
@@ -114,11 +114,11 @@ public final class TalentCommand implements CommandHandler {
                     int nextLevel = Integer.parseInt(args.get(1));
                     int currentLevel = avatar.getSkillLevelMap().get(skillId);
                     if (args.size() < 1){
-                        CommandHandler.sendMessage(sender, "è®¾ç½®å¤©èµ‹ç­‰çº§: /talent <n or e or q> <value>");
+                        CommandHandler.sendMessage(sender, "ÉèÖÃÌì¸³µÈ¼¶: /talent <n or e or q> <value>");
                         return;
                     }
                     if (nextLevel > 16){
-                        CommandHandler.sendMessage(sender, "å¤©èµ‹ç­‰çº§æ— æ•ˆï¼Œç­‰çº§åº”ä½äº16ï¼");
+                        CommandHandler.sendMessage(sender, "Ìì¸³µÈ¼¶ÎŞĞ§£¬µÈ¼¶Ó¦µÍÓÚ16£¡");
                         return;
                     }
                     // Upgrade skill
@@ -127,9 +127,9 @@ public final class TalentCommand implements CommandHandler {
                     // Packet
                     sender.sendPacket(new PacketAvatarSkillChangeNotify(avatar, skillId, currentLevel, nextLevel));
                     sender.sendPacket(new PacketAvatarSkillUpgradeRsp(avatar, skillId, currentLevel, nextLevel));
-                    CommandHandler.sendMessage(sender, "è®¾ç½®æ­¤å¤©èµ‹ç­‰çº§ä¸º " + nextLevel + ".");
+                    CommandHandler.sendMessage(sender, "ÉèÖÃ´ËÌì¸³µÈ¼¶Îª " + nextLevel + ".");
                 } catch (NumberFormatException ignored) {
-                    CommandHandler.sendMessage(sender, "æ— æ•ˆçš„å¤©èµ‹ç­‰çº§");
+                    CommandHandler.sendMessage(sender, "ÎŞĞ§µÄÌì¸³µÈ¼¶");
                     return;
                 }
                 break;
@@ -140,9 +140,9 @@ public final class TalentCommand implements CommandHandler {
                     int skillIdE = avatar.getData().getSkillDepot().getSkills().get(1);
                     int skillIdQ = avatar.getData().getSkillDepot().getEnergySkill();
                     
-                    CommandHandler.sendMessage(sender, "æ™®æ”» ID " + skillIdNorAtk + ".");
-                    CommandHandler.sendMessage(sender, "EæŠ€èƒ½ ID " + skillIdE + ".");
-                    CommandHandler.sendMessage(sender, "QæŠ€èƒ½ ID " + skillIdQ + ".");
+                    CommandHandler.sendMessage(sender, "ÆÕ¹¥ ID " + skillIdNorAtk + ".");
+                    CommandHandler.sendMessage(sender, "E¼¼ÄÜ ID " + skillIdE + ".");
+                    CommandHandler.sendMessage(sender, "Q¼¼ÄÜ ID " + skillIdQ + ".");
                 break;
         }
     }

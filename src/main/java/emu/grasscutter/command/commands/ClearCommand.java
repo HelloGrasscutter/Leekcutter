@@ -10,7 +10,7 @@ import emu.grasscutter.game.player.Player;
 import java.util.List;
 
 @Command(label = "clear", usage = "clear <all|wp|art|mat>", //Merged /clearartifacts and /clearweapons to /clear <args> [uid]
-        description = "åˆ é™¤æ‰€æœ‰æœªè£…å¤‡åŠæœªè§£é”çš„åœ£é—ç‰©(art)æˆ–æ­¦å™¨(wp)æˆ–ææ–™(mat)æˆ–è€…æ‰€æœ‰(all)ï¼ŒåŒ…æ‹¬äº”æ˜Ÿï¼ï¼ï¼",
+        description = "É¾³ıËùÓĞÎ´×°±¸¼°Î´½âËøµÄÊ¥ÒÅÎï(art)»òÎäÆ÷(wp)»ò²ÄÁÏ(mat)»òÕßËùÓĞ(all)£¬°üÀ¨ÎåĞÇ£¡£¡£¡",
         aliases = {"clear"}, permission = "player.clearinv")
 
 public final class ClearCommand implements CommandHandler {
@@ -20,7 +20,7 @@ public final class ClearCommand implements CommandHandler {
         int target;
         String cmdSwitch = "";
         if (sender == null) {
-            CommandHandler.sendMessage(null, "è¯·åœ¨æ¸¸æˆå†…æ‰§è¡Œè¯¥æŒ‡ä»¤");
+            CommandHandler.sendMessage(null, "ÇëÔÚÓÎÏ·ÄÚÖ´ĞĞ¸ÃÖ¸Áî");
             return;
         }
         Inventory playerInventory = sender.getInventory();
@@ -39,7 +39,7 @@ public final class ClearCommand implements CommandHandler {
                             .filter(item -> item.getItemType() == ItemType.ITEM_WEAPON)
                             .filter(item -> !item.isLocked() && !item.isEquipped())
                             .forEach(item -> playerInventory.removeItem(item, item.getCount()));
-                    sender.dropMessage("æ¸…ç†äº†æ­¤è§’è‰²çš„æ­¦å™¨ï¼š" + targetPlayer.getNickname());
+                    sender.dropMessage("ÇåÀíÁË´Ë½ÇÉ«µÄÎäÆ÷£º" + targetPlayer.getNickname());
                 }
                 case "art" -> {
                     playerInventory.getItems().values().stream()
@@ -47,7 +47,7 @@ public final class ClearCommand implements CommandHandler {
                             .filter(item -> item.getLevel() == 1 && item.getExp() == 0)
                             .filter(item -> !item.isLocked() && !item.isEquipped())
                             .forEach(item -> playerInventory.removeItem(item, item.getCount()));
-                    sender.dropMessage("æ¸…ç†äº†æ­¤è§’è‰²åœ£é—ç‰©ï¼š" + targetPlayer.getNickname());
+                    sender.dropMessage("ÇåÀíÁË´Ë½ÇÉ«Ê¥ÒÅÎï£º" + targetPlayer.getNickname());
                 }
                 case "mat" -> {
                     playerInventory.getItems().values().stream()
@@ -55,7 +55,7 @@ public final class ClearCommand implements CommandHandler {
                             .filter(item -> item.getLevel() == 1 && item.getExp() == 0)
                             .filter(item -> !item.isLocked() && !item.isEquipped())
                             .forEach(item -> playerInventory.removeItem(item, item.getCount()));
-                    sender.dropMessage("æ¸…ç†äº†æ­¤è§’è‰²çš„ææ–™ï¼š" + targetPlayer.getNickname());
+                    sender.dropMessage("ÇåÀíÁË´Ë½ÇÉ«µÄ²ÄÁÏ£º" + targetPlayer.getNickname());
                 }
                 case "all" -> {
                     playerInventory.getItems().values().stream()
@@ -63,45 +63,45 @@ public final class ClearCommand implements CommandHandler {
                             .filter(item1 -> item1.getLevel() == 1 && item1.getExp() == 0)
                             .filter(item1 -> !item1.isLocked() && !item1.isEquipped())
                             .forEach(item1 -> playerInventory.removeItem(item1, item1.getCount()));
-                    sender.dropMessage("æ¸…ç†äº†è¯¥ç©å®¶çš„åœ£é—ç‰©ï¼š" + targetPlayer.getNickname() + " .");
+                    sender.dropMessage("ÇåÀíÁË¸ÃÍæ¼ÒµÄÊ¥ÒÅÎï£º" + targetPlayer.getNickname() + " .");
                     playerInventory.getItems().values().stream()
                             .filter(item2 -> item2.getItemType() == ItemType.ITEM_MATERIAL)
                             .filter(item2 -> !item2.isLocked() && !item2.isEquipped())
                             .forEach(item2 -> playerInventory.removeItem(item2, item2.getCount()));
-                    sender.dropMessage("æ¸…ç†äº†è¯¥ç©å®¶çš„ææ–™ï¼š" + targetPlayer.getNickname() + " .");
+                    sender.dropMessage("ÇåÀíÁË¸ÃÍæ¼ÒµÄ²ÄÁÏ£º" + targetPlayer.getNickname() + " .");
                     playerInventory.getItems().values().stream()
                             .filter(item3 -> item3.getItemType() == ItemType.ITEM_WEAPON)
                             .filter(item3 -> item3.getLevel() == 1 && item3.getExp() == 0)
                             .filter(item3 -> !item3.isLocked() && !item3.isEquipped())
                             .forEach(item3 -> playerInventory.removeItem(item3, item3.getCount()));
-                    sender.dropMessage("æ¸…ç†äº†è¯¥ç©å®¶çš„æ­¦å™¨ï¼š" + targetPlayer.getNickname() + " .");
+                    sender.dropMessage("ÇåÀíÁË¸ÃÍæ¼ÒµÄÎäÆ÷£º" + targetPlayer.getNickname() + " .");
                     playerInventory.getItems().values().stream()
                             .filter(item4 -> item4.getItemType() == ItemType.ITEM_FURNITURE)
                             .filter(item4 -> !item4.isLocked() && !item4.isEquipped())
                             .forEach(item4 -> playerInventory.removeItem(item4, item4.getCount()));
-                    sender.dropMessage("æ¸…ç†äº†è¯¥ç©å®¶çš„å®¶å…·ï¼š" + targetPlayer.getNickname() + " .");
+                    sender.dropMessage("ÇåÀíÁË¸ÃÍæ¼ÒµÄ¼Ò¾ß£º" + targetPlayer.getNickname() + " .");
                     playerInventory.getItems().values().stream()
                             .filter(item5 -> item5.getItemType() == ItemType.ITEM_DISPLAY)
                             .filter(item5 -> !item5.isLocked() && !item5.isEquipped())
                             .forEach(item5 -> playerInventory.removeItem(item5, item5.getCount()));
-                    sender.dropMessage("æ¸…ç†äº†è¯¥ç©å®¶çš„Displaysï¼š" + targetPlayer.getNickname() + " .");
+                    sender.dropMessage("ÇåÀíÁË¸ÃÍæ¼ÒµÄDisplays£º" + targetPlayer.getNickname() + " .");
                     playerInventory.getItems().values().stream()
                             .filter(item6 -> item6.getItemType() == ItemType.ITEM_VIRTUAL)
                             .filter(item6 -> !item6.isLocked() && !item6.isEquipped())
                             .forEach(item6 -> playerInventory.removeItem(item6, item6.getCount()));
-                    sender.dropMessage("æ¸…ç†äº†è¯¥ç©å®¶çš„virtualsï¼š" + targetPlayer.getNickname() + " .");
-                    sender.dropMessage("æ¸…ç†äº†è¯¥ç©å®¶çš„ä¸€åˆ‡ï¼š" + targetPlayer.getNickname() + " .");
+                    sender.dropMessage("ÇåÀíÁË¸ÃÍæ¼ÒµÄvirtuals£º" + targetPlayer.getNickname() + " .");
+                    sender.dropMessage("ÇåÀíÁË¸ÃÍæ¼ÒµÄÒ»ÇĞ£º" + targetPlayer.getNickname() + " .");
                 }
             }
         } catch (NumberFormatException ignored) {
             // TODO: Parse from item name using GM Handbook.
-            CommandHandler.sendMessage(sender, "æ— æ•ˆçš„ç©å®¶ID");
+            CommandHandler.sendMessage(sender, "ÎŞĞ§µÄÍæ¼ÒID");
             return;
         }
 
         Player targetPlayer = Grasscutter.getGameServer().getPlayerByUid(target);
         if (targetPlayer == null) {
-            CommandHandler.sendMessage(sender, "è¿™ç©å®¶æ ¹æœ¬ä¸å­˜åœ¨å¥½å§ï¼Œè‡³å°‘ä»–æ²¡æœ‰æ´»åœ¨é˜³é—´æ");
+            CommandHandler.sendMessage(sender, "ÕâÍæ¼Ò¸ù±¾²»´æÔÚºÃ°É£¬ÖÁÉÙËûÃ»ÓĞ»îÔÚÑô¼äÄó");
             return;
         }
     }

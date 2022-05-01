@@ -7,16 +7,16 @@ import emu.grasscutter.game.player.Player;
 import java.util.List;
 
 @Command(label = "checklife", usage = "checklife", aliases = {"cf"},
-        description = "ç¡®è®¤æœåŠ¡å™¨æ˜¯å¦è¿˜åœ¨è¿è¡Œ")
+        description = "È·ÈÏ·şÎñÆ÷ÊÇ·ñ»¹ÔÚÔËĞĞ")
 public final class CheckServerLifeCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
         if (sender == null) {
-            CommandHandler.sendMessage(null, "è¯·åœ¨æ¸¸æˆä¸­æ‰§è¡Œè¯¥æŒ‡ä»¤");
+            CommandHandler.sendMessage(null, "ÇëÔÚÓÎÏ·ÖĞÖ´ĞĞ¸ÃÖ¸Áî");
             return;
         }
 
-        sender.dropMessage(String.format("çˆ·è¿˜æ´»ç€æï¼"));
+        sender.dropMessage(String.format("Ò¯»¹»î×ÅÄó£¡"));
     }
 }

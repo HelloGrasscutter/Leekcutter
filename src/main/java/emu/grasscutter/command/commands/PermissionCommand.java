@@ -9,13 +9,13 @@ import emu.grasscutter.game.player.Player;
 import java.util.List;
 
 @Command(label = "permission", usage = "permission <add|remove> <username> <permission>",
-        description = "æ·»åŠ æˆ–ç§»é™¤ç©å®¶çš„æƒé™", permission = "*")
+        description = "Ìí¼Ó»òÒÆ³ıÍæ¼ÒµÄÈ¨ÏŞ", permission = "*")
 public final class PermissionCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
         if (args.size() < 3) {
-            CommandHandler.sendMessage(sender, "ç”¨æ³•: permission <add|remove> <username> <permission>");
+            CommandHandler.sendMessage(sender, "ÓÃ·¨: permission <add|remove> <username> <permission>");
             return;
         }
 
@@ -25,23 +25,23 @@ public final class PermissionCommand implements CommandHandler {
 
         Account account = Grasscutter.getGameServer().getAccountByName(username);
         if (account == null) {
-            CommandHandler.sendMessage(sender, "æ‰¾ä¸åˆ°è¯¥è´¦å·");
+            CommandHandler.sendMessage(sender, "ÕÒ²»µ½¸ÃÕËºÅ");
             return;
         }
 
         switch (action) {
             default:
-                CommandHandler.sendMessage(sender, "ç”¨æ³•: permission <add|remove> <username> <permission>");
+                CommandHandler.sendMessage(sender, "ÓÃ·¨: permission <add|remove> <username> <permission>");
                 break;
             case "add":
                 if (account.addPermission(permission)) {
-                    CommandHandler.sendMessage(sender, "æƒé™å·²æ·»åŠ ï¼Œè¿™å¯å¿…é¡»æ˜¯ä½ ä¿¡ä»»çš„äººå‘ï¼");
-                } else CommandHandler.sendMessage(sender, "ä»–å·²ç»æœ‰è¿™ä¸ªæƒé™äº†è¯¶");
+                    CommandHandler.sendMessage(sender, "È¨ÏŞÒÑÌí¼Ó£¬Õâ¿É±ØĞëÊÇÄãĞÅÈÎµÄÈËÄÅ£¡");
+                } else CommandHandler.sendMessage(sender, "ËûÒÑ¾­ÓĞÕâ¸öÈ¨ÏŞÁËÚÀ");
                 break;
             case "remove":
                 if (account.removePermission(permission)) {
-                    CommandHandler.sendMessage(sender, "æƒé™åˆ é™¤æˆåŠŸï¼Œæ˜¯ä¸æ˜¯åœ¨æ¸…ç†å¸¦æ¶äººï¼Ÿ");
-                } else CommandHandler.sendMessage(sender, "å•Šè¿™...è¿™ä¸ªç©å®¶æœ¬æ¥å°±æ²¡æœ‰æ­¤æƒé™å¥½å§");
+                    CommandHandler.sendMessage(sender, "È¨ÏŞÉ¾³ı³É¹¦£¬ÊÇ²»ÊÇÔÚÇåÀí´ø¶ñÈË£¿");
+                } else CommandHandler.sendMessage(sender, "°¡Õâ...Õâ¸öÍæ¼Ò±¾À´¾ÍÃ»ÓĞ´ËÈ¨ÏŞºÃ°É");
                 break;
         }
 

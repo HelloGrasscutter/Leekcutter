@@ -11,7 +11,7 @@ import emu.grasscutter.game.player.Player;
 import java.util.List;
 
 @Command(label = "givechar", usage = "givechar <playerId> <avatarId> [level]",
-        description = "ç»™äºˆæŒ‡å®šç©å®¶å¯¹åº”è§’è‰²", aliases = {"givec"}, permission = "player.givechar")
+        description = "¸øÓèÖ¸¶¨Íæ¼Ò¶ÔÓ¦½ÇÉ«", aliases = {"givec"}, permission = "player.givechar")
 public final class GiveCharCommand implements CommandHandler {
 
     @Override
@@ -19,13 +19,13 @@ public final class GiveCharCommand implements CommandHandler {
         int target, avatarId, level = 1, ascension;
 
         if (sender == null && args.size() < 2) {
-            CommandHandler.sendMessage(null, "ç”¨æ³•: givechar <player> <itemId|itemName> [amount]");
+            CommandHandler.sendMessage(null, "ÓÃ·¨: givechar <player> <itemId|itemName> [amount]");
             return;
         }
 
         switch (args.size()) {
             default:
-                CommandHandler.sendMessage(sender, "ç”¨æ³•: givechar <player> <avatarId> [level]");
+                CommandHandler.sendMessage(sender, "ÓÃ·¨: givechar <player> <avatarId> [level]");
                 return;
             case 2:
                 try {
@@ -39,7 +39,7 @@ public final class GiveCharCommand implements CommandHandler {
                     }
                 } catch (NumberFormatException ignored) {
                     // TODO: Parse from avatar name using GM Handbook.
-                    CommandHandler.sendMessage(sender, "æ— æ•ˆçš„è§’è‰²æˆ–ç©å®¶id");
+                    CommandHandler.sendMessage(sender, "ÎŞĞ§µÄ½ÇÉ«»òÍæ¼Òid");
                     return;
                 }
                 break;
@@ -47,7 +47,7 @@ public final class GiveCharCommand implements CommandHandler {
                 try {
                     target = Integer.parseInt(args.get(0));
                     if (Grasscutter.getGameServer().getPlayerByUid(target) == null) {
-                        CommandHandler.sendMessage(sender, "æ— æ•ˆçš„ç©å®¶id");
+                        CommandHandler.sendMessage(sender, "ÎŞĞ§µÄÍæ¼Òid");
                         return;
                     }
 
@@ -55,7 +55,7 @@ public final class GiveCharCommand implements CommandHandler {
                     level = Integer.parseInt(args.get(2));
                 } catch (NumberFormatException ignored) {
                     // TODO: Parse from avatar name using GM Handbook.
-                    CommandHandler.sendMessage(sender, "æ— æ•ˆçš„è§’è‰²æˆ–ç©å®¶id");
+                    CommandHandler.sendMessage(sender, "ÎŞĞ§µÄ½ÇÉ«»òÍæ¼Òid");
                     return;
                 }
                 break;
@@ -63,13 +63,13 @@ public final class GiveCharCommand implements CommandHandler {
 
         Player targetPlayer = Grasscutter.getGameServer().getPlayerByUid(target);
         if (targetPlayer == null) {
-            CommandHandler.sendMessage(sender, "æŸ¥æ— æ­¤äººå¥¥");
+            CommandHandler.sendMessage(sender, "²éÎŞ´ËÈË°Â");
             return;
         }
 
         AvatarData avatarData = GameData.getAvatarDataMap().get(avatarId);
         if (avatarData == null) {
-            CommandHandler.sendMessage(sender, "æ— æ•ˆçš„è§’è‰²id");
+            CommandHandler.sendMessage(sender, "ÎŞĞ§µÄ½ÇÉ«id");
             return;
         }
 
@@ -88,6 +88,6 @@ public final class GiveCharCommand implements CommandHandler {
         avatar.recalcStats();
 
         targetPlayer.addAvatar(avatar);
-        CommandHandler.sendMessage(sender, String.format("å·²ç»æŠŠ %s ç»™äº† %s.", avatarId, target));
+        CommandHandler.sendMessage(sender, String.format("ÒÑ¾­°Ñ %s ¸øÁË %s.", avatarId, target));
     }
 }

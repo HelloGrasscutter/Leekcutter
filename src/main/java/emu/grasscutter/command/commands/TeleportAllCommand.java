@@ -8,17 +8,17 @@ import emu.grasscutter.utils.Position;
 import java.util.List;
 
 @Command(label = "tpall", usage = "tpall",
-        description = "ä¼ é€å¤šäººä¸–ç•Œä¸­æ‰€æœ‰çš„ç©å®¶åˆ°è‡ªèº«åœ°ç‚¹", permission = "player.tpall")
+        description = "´«ËÍ¶àÈËÊÀ½çÖĞËùÓĞµÄÍæ¼Òµ½×ÔÉíµØµã", permission = "player.tpall")
 public final class TeleportAllCommand implements CommandHandler {
     @Override
     public void execute(Player sender, List<String> args) {
         if (sender == null) {
-            CommandHandler.sendMessage(null, "è¯·åœ¨æ¸¸æˆå†…æ‰§è¡Œæ­¤æŒ‡ä»¤");
+            CommandHandler.sendMessage(null, "ÇëÔÚÓÎÏ·ÄÚÖ´ĞĞ´ËÖ¸Áî");
             return;
         }
         
         if (!sender.getWorld().isMultiplayer()) {
-            CommandHandler.sendMessage(sender, "ä½ åªèƒ½åœ¨å¤šäººæ¸¸æˆä¸­ä½¿ç”¨æ­¤æŒ‡ä»¤");
+            CommandHandler.sendMessage(sender, "ÄãÖ»ÄÜÔÚ¶àÈËÓÎÏ·ÖĞÊ¹ÓÃ´ËÖ¸Áî");
             return;
         }
         

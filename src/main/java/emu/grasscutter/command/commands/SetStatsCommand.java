@@ -10,7 +10,7 @@ import emu.grasscutter.server.packet.send.PacketEntityFightPropUpdateNotify;
 import java.util.List;
 
 @Command(label = "setstats", usage = "setstats|stats <stat> <value>",
-        description = "ç›´æ¥ä¿®æ”¹å½“å‰è§’è‰²çš„é¢æ¿ã€è¯¥æŒ‡ä»¤æš‚æ— æ±‰åŒ–ã€‘", aliases = {"stats"}, permission = "player.setstats")
+        description = "Ö±½ÓĞŞ¸Äµ±Ç°½ÇÉ«µÄÃæ°å¡¾¸ÃÖ¸ÁîÔİÎŞºº»¯¡¿", aliases = {"stats"}, permission = "player.setstats")
 public final class SetStatsCommand implements CommandHandler {
 
     @Override

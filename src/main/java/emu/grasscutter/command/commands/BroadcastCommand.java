@@ -8,13 +8,13 @@ import emu.grasscutter.game.player.Player;
 import java.util.List;
 
 @Command(label = "broadcast", usage = "broadcast <message>",
-        description = "å‘é€æ¶ˆæ¯ç»™è¯¥æœåŠ¡å™¨å†…æ‰€æœ‰çš„ç©å®¶", aliases = {"b"}, permission = "server.broadcast")
+        description = "·¢ËÍÏûÏ¢¸ø¸Ã·şÎñÆ÷ÄÚËùÓĞµÄÍæ¼Ò", aliases = {"b"}, permission = "server.broadcast")
 public final class BroadcastCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
         if (args.size() < 1) {
-            CommandHandler.sendMessage(sender, "ç”¨æ³•: broadcast <message>");
+            CommandHandler.sendMessage(sender, "ÓÃ·¨: broadcast <message>");
             return;
         }
 
@@ -24,6 +24,6 @@ public final class BroadcastCommand implements CommandHandler {
             CommandHandler.sendMessage(p, message);
         }
 
-        CommandHandler.sendMessage(sender, "æ¶ˆæ¯å·²å‘é€");
+        CommandHandler.sendMessage(sender, "ÏûÏ¢ÒÑ·¢ËÍ");
     }
 }

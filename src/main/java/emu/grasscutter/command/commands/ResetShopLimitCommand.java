@@ -8,24 +8,24 @@ import emu.grasscutter.game.player.Player;
 import java.util.List;
 
 @Command(label = "resetshop", usage = "resetshop",
-        description = "é‡ç½®ç›®æ ‡ç©å®¶çš„å•†åº—åˆ·æ–°æ—¶é—´", permission = "server.resetshop")
+        description = "ÖØÖÃÄ¿±êÍæ¼ÒµÄÉÌµêË¢ĞÂÊ±¼ä", permission = "server.resetshop")
 public final class ResetShopLimitCommand implements CommandHandler {
     @Override
     public void execute(Player sender, List<String> args) {
         if (args.size() < 1) {
-            CommandHandler.sendMessage(sender,"ç”¨æ³•: /resetshop <player id>");
+            CommandHandler.sendMessage(sender,"ÓÃ·¨: /resetshop <player id>");
             return;
         }
 
         int target = Integer.parseInt(args.get(0));
         Player targetPlayer = Grasscutter.getGameServer().getPlayerByUid(target);
         if (targetPlayer == null) {
-            CommandHandler.sendMessage(sender, "æŸ¥æ— æ­¤äºº");
+            CommandHandler.sendMessage(sender, "²éÎŞ´ËÈË");
             return;
         }
 
         targetPlayer.getShopLimit().forEach(x -> x.setNextRefreshTime(0));
         targetPlayer.save();
-        CommandHandler.sendMessage(sender, "å®Œæ¯•");
+        CommandHandler.sendMessage(sender, "Íê±Ï");
     }
 }

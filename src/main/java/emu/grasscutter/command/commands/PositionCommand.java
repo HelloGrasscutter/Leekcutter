@@ -7,17 +7,17 @@ import emu.grasscutter.game.player.Player;
 import java.util.List;
 
 @Command(label = "position", usage = "position", aliases = {"pos"},
-        description = "è·å–ç©å®¶åæ ‡")
+        description = "»ñÈ¡Íæ¼Ò×ø±ê")
 public final class PositionCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
         if (sender == null) {
-            CommandHandler.sendMessage(null, "è¯·åœ¨æ¸¸æˆå†…æ‰§è¡Œæ­¤æŒ‡ä»¤");
+            CommandHandler.sendMessage(null, "ÇëÔÚÓÎÏ·ÄÚÖ´ĞĞ´ËÖ¸Áî");
             return;
         }
 
-        sender.dropMessage(String.format("åæ ‡: Xï¼š%.3f, Yï¼š%.3f, Zï¼š%.3f\nåœºæ™¯id: %d",
+        sender.dropMessage(String.format("×ø±ê: X£º%.3f, Y£º%.3f, Z£º%.3f\n³¡¾°id: %d",
                 sender.getPos().getX(), sender.getPos().getY(), sender.getPos().getZ(), sender.getSceneId()));
     }
 }

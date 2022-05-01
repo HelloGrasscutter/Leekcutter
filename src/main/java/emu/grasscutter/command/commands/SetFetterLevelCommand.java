@@ -10,26 +10,26 @@ import emu.grasscutter.game.player.Player;
 import emu.grasscutter.server.packet.send.PacketAvatarFetterDataNotify;
 
 @Command(label = "setfetterlevel", usage = "setfetterlevel <level>",
-        description = "è®¾ç½®å½“å‰è§’è‰²çš„å¥½æ„Ÿç­‰çº§",
+        description = "ÉèÖÃµ±Ç°½ÇÉ«µÄºÃ¸ĞµÈ¼¶",
         aliases = {"setfetterlvl", "setfriendship"}, permission = "player.setfetterlevel")
 public final class SetFetterLevelCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
         if (sender == null) {
-            CommandHandler.sendMessage(null, "è¯·åœ¨æ¸¸æˆå†…æ‰§è¡Œè¯¥æŒ‡ä»¤");
+            CommandHandler.sendMessage(null, "ÇëÔÚÓÎÏ·ÄÚÖ´ĞĞ¸ÃÖ¸Áî");
             return;
         }
 
         if (args.size() < 1) {
-            CommandHandler.sendMessage(sender, "ç”¨æ³•: setfetterlevel <level>");
+            CommandHandler.sendMessage(sender, "ÓÃ·¨: setfetterlevel <level>");
             return;
         }
 
         try {
             int fetterLevel = Integer.parseInt(args.get(0));
             if (fetterLevel < 0 || fetterLevel > 10) {
-                CommandHandler.sendMessage(sender, "å¥½æ„Ÿç­‰çº§å¿…é¡»åœ¨0è‡³10ä¹‹é—´");
+                CommandHandler.sendMessage(sender, "ºÃ¸ĞµÈ¼¶±ØĞëÔÚ0ÖÁ10Ö®¼ä");
                 return;
             }
             Avatar avatar = sender.getTeamManager().getCurrentAvatarEntity().getAvatar();
@@ -41,9 +41,9 @@ public final class SetFetterLevelCommand implements CommandHandler {
 		    avatar.save();
 		
 		    sender.sendPacket(new PacketAvatarFetterDataNotify(avatar));
-            CommandHandler.sendMessage(sender, "å¥½æ„Ÿç­‰çº§å·²è®¾å®šä¸º " + fetterLevel);
+            CommandHandler.sendMessage(sender, "ºÃ¸ĞµÈ¼¶ÒÑÉè¶¨Îª " + fetterLevel);
         } catch (NumberFormatException ignored) {
-            CommandHandler.sendMessage(sender, "æ— æ•ˆçš„å¥½æ„Ÿç­‰çº§");
+            CommandHandler.sendMessage(sender, "ÎŞĞ§µÄºÃ¸ĞµÈ¼¶");
         }
     }
     

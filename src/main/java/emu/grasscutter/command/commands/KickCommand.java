@@ -8,7 +8,7 @@ import emu.grasscutter.game.player.Player;
 import java.util.List;
 
 @Command(label = "kick", usage = "kick <player>",
-        description = "ä»æœåŠ¡å™¨ä¸­è¸¢å‡ºæŒ‡å®šç©å®¶ (WIP)", permission = "server.kick")
+        description = "´Ó·şÎñÆ÷ÖĞÌß³öÖ¸¶¨Íæ¼Ò (WIP)", permission = "server.kick")
 public final class KickCommand implements CommandHandler {
 
     @Override
@@ -17,14 +17,14 @@ public final class KickCommand implements CommandHandler {
 
         Player targetPlayer = Grasscutter.getGameServer().getPlayerByUid(target);
         if (targetPlayer == null) {
-            CommandHandler.sendMessage(sender, "æŸ¥æ— æ­¤äººï¼Œç¥æƒå¤±è´¥");
+            CommandHandler.sendMessage(sender, "²éÎŞ´ËÈË£¬ÉñÈ¨Ê§°Ü");
             return;
         }
 
         if (sender != null) {
-            CommandHandler.sendMessage(sender, String.format("ç©å®¶ [%s:%s] è¸¢å‡ºäº†ç©å®¶ [%s:%s]", sender.getAccount().getPlayerUid(), sender.getAccount().getUsername(), target, targetPlayer.getAccount().getUsername()));
+            CommandHandler.sendMessage(sender, String.format("Íæ¼Ò [%s:%s] Ìß³öÁËÍæ¼Ò [%s:%s]", sender.getAccount().getPlayerUid(), sender.getAccount().getUsername(), target, targetPlayer.getAccount().getUsername()));
         }
-        CommandHandler.sendMessage(sender, String.format("æ­£åœ¨è¸¢å‡ºç©å®¶ [%s:%s]", target, targetPlayer.getAccount().getUsername()));
+        CommandHandler.sendMessage(sender, String.format("ÕıÔÚÌß³öÍæ¼Ò [%s:%s]", target, targetPlayer.getAccount().getUsername()));
 
         targetPlayer.getSession().close();
     }
