@@ -1,6 +1,6 @@
 # Leekcutter
 
-* Leekcutter是基于Grasscutter构建的Genshin Impact PS，并一直与Grasscutter同步并且作为Grasscutter的备胎。同时，这也是一款更适合中国用户的PS，其指令经过汉化，并会及时引入经过验证的修复代码，即使这条代码并没有通过Grasscutter的Pull Requests。本项目将不会隐去Grasscutter的字样，因为本项目赖以Grasscutter生存，且对Grasscutter保持一定的敬意。*
+* Leekcutter是基于Grasscutter构建的Genshin Impact PS，并一直与Grasscutter同步并且作为Grasscutter的备胎。同时，这也是一款更适合中国用户的PS，其指令经过汉化，并会及时引入经过验证的修复代码，即使这条代码并没有通过Grasscutter的Pull Requests。本项目将不会隐去Grasscutter的字样，因为本项目赖以Grasscutter生存，且对Grasscutter保持一定的敬意。
 
 **注意:** 我们一直欢迎您成为该项目的贡献者。在添加您的代码之前，请仔细阅读我们的 [代码规范](https://github.com/Grasscutters/Grasscutter/blob/stable/CONTRIBUTING.md).
 
@@ -37,7 +37,7 @@
 1. 获取 `leekcutter.jar`
    - [自行构建](#构建)
 2. 在**leekcutter.jar** 所在目录中创建 `resources` 文件夹并将 `BinOutput` 和 `ExcelBinOutput` 放入其中 *(查看 [wiki](https://github.com/Grasscutters/Grasscutter/wiki) 了解更多)*
-3. 通过命令 `java -jar grasscutter.jar` 来运行Grasscutter. **在此之前请确认MongoDB服务运行正常**
+3. 通过命令 `java -jar leekcutter.jar` 来运行Grasscutter. **在此之前请确认MongoDB服务运行正常**
 
 注：MongoDB下载地址：[https://www.mongodb.com/download-center/community](https://www.mongodb.com/download-center/community) 并建议在安装时勾选同时安装MongoDB Compass的勾选框，这将会大大提升你的数据库管理体验。
 
