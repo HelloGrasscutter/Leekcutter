@@ -41,7 +41,7 @@ sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
 group = 'tech.xigam'
-version = '1.0.3-dev'
+version = '1.0.4-dev'
 
 sourceCompatibility = 17
 targetCompatibility = 17
@@ -96,7 +96,7 @@ jar {
         attributes 'Main-Class': 'emu.grasscutter.Grasscutter'
     }
 
-    jar.baseName = 'grasscutter'
+    jar.baseName = 'leekcutter'
 
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
@@ -125,9 +125,9 @@ publishing {
                 }
             }
             pom {
-                name = 'Grasscutter'
+                name = 'Leekcutter'
                 description = 'A server software reimplementation for an anime game.'
-                url = 'https://github.com/Grasscutters/Grasscutter'
+                url = 'https://github.com/Searchstars/Leekcutter'
                 licenses {
                     license {
                         name = 'The Apache License, Version 2.0'
@@ -144,6 +144,11 @@ publishing {
                         id = 'magix'
                         name = 'Magix'
                         email = 'magix@xigam.tech'
+                    }
+                    developer{
+                        id = 'Searchstars'
+                        name = 'Searchstars'
+                        email = 'searchstars@163.com'
                     }
                 }
                 scm {

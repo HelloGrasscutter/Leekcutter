@@ -11,18 +11,18 @@ import emu.grasscutter.utils.Position;
 import java.util.List;
 
 @Command(label = "drop", usage = "drop <itemId|itemName> [amount]",
-        description = "Drops an item near you", aliases = {"d", "dropitem"}, permission = "server.drop")
+        description = "在玩家附件掉落你指定的物品", aliases = {"d", "dropitem"}, permission = "server.drop")
 public final class DropCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
         if (sender == null) {
-            CommandHandler.sendMessage(null, "Run this command in-game.");
+            CommandHandler.sendMessage(null, "请在游戏中执行该指令");
             return;
         }
 
         if (args.size() < 1) {
-            CommandHandler.sendMessage(sender, "Usage: drop <itemId|itemName> [amount]");
+            CommandHandler.sendMessage(sender, "用法: drop <itemId|itemName> [amount]");
             return;
         }
 
@@ -33,7 +33,7 @@ public final class DropCommand implements CommandHandler {
 
             ItemData itemData = GameData.getItemDataMap().get(item);
             if (itemData == null) {
-                CommandHandler.sendMessage(sender, "Invalid item id.");
+                CommandHandler.sendMessage(sender, "无效的物品id，你或许需要一份HandBook？");
                 return;
             }
 
@@ -48,9 +48,9 @@ public final class DropCommand implements CommandHandler {
                 EntityItem entity = new EntityItem(sender.getScene(), sender, itemData, sender.getPos().clone().addY(3f), amount);
                 sender.getScene().addEntity(entity);
             }
-            CommandHandler.sendMessage(sender, String.format("Dropped %s of %s.", amount, item));
+            CommandHandler.sendMessage(sender, String.format("已掉落了 %s 个 %s", amount, item));
         } catch (NumberFormatException ignored) {
-            CommandHandler.sendMessage(sender, "Invalid item or player ID.");
+            CommandHandler.sendMessage(sender, "无效的物品或玩家id");
         }
     }
 }

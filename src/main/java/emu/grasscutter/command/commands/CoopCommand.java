@@ -7,12 +7,12 @@ import emu.grasscutter.game.player.Player;
 import java.util.List;
 
 @Command(label = "coop", usage = "coop",
-        description = "Forces someone to join the world of others", permission = "server.coop")
+        description = "强制某位玩家进入指定玩家的多人世界", permission = "server.coop")
 public final class CoopCommand implements CommandHandler {
     @Override
     public void execute(Player sender, List<String> args) {
         if (args.size() < 2) {
-            CommandHandler.sendMessage(sender, "Usage: coop <playerId> <target playerId>");
+            CommandHandler.sendMessage(sender, "用法: coop <playerId> <target playerId>");
             return;
         }
         
@@ -22,7 +22,7 @@ public final class CoopCommand implements CommandHandler {
             Player host = sender.getServer().getPlayerByUid(hostId);
             Player want = sender.getServer().getPlayerByUid(tid);
             if (host == null || want == null) {
-                CommandHandler.sendMessage(sender, "Player is offline.");
+                CommandHandler.sendMessage(sender, "两个玩家中的其中一个或两个为离线状态");
                 return;
             }
             if (want.isInMultiplayer()) {
@@ -31,7 +31,7 @@ public final class CoopCommand implements CommandHandler {
             sender.getServer().getMultiplayerManager().applyEnterMp(want, hostId);
             sender.getServer().getMultiplayerManager().applyEnterMpReply(host, tid, true);
         } catch (Exception e) {
-            CommandHandler.sendMessage(sender, "Player id is not valid.");
+            CommandHandler.sendMessage(sender, "无效的玩家id");
         }
     }
 }

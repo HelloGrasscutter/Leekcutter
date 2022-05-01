@@ -11,7 +11,7 @@ import emu.grasscutter.game.player.Player;
 import java.util.List;
 
 @Command(label = "givechar", usage = "givechar <playerId> <avatarId> [level]",
-        description = "Gives the player a specified character", aliases = {"givec"}, permission = "player.givechar")
+        description = "给予指定玩家对应角色", aliases = {"givec"}, permission = "player.givechar")
 public final class GiveCharCommand implements CommandHandler {
 
     @Override
@@ -19,13 +19,13 @@ public final class GiveCharCommand implements CommandHandler {
         int target, avatarId, level = 1, ascension;
 
         if (sender == null && args.size() < 2) {
-            CommandHandler.sendMessage(null, "Usage: givechar <player> <itemId|itemName> [amount]");
+            CommandHandler.sendMessage(null, "用法: givechar <player> <itemId|itemName> [amount]");
             return;
         }
 
         switch (args.size()) {
             default:
-                CommandHandler.sendMessage(sender, "Usage: givechar <player> <avatarId> [level]");
+                CommandHandler.sendMessage(sender, "用法: givechar <player> <avatarId> [level]");
                 return;
             case 2:
                 try {
@@ -39,7 +39,7 @@ public final class GiveCharCommand implements CommandHandler {
                     }
                 } catch (NumberFormatException ignored) {
                     // TODO: Parse from avatar name using GM Handbook.
-                    CommandHandler.sendMessage(sender, "Invalid avatar or player ID.");
+                    CommandHandler.sendMessage(sender, "无效的角色或玩家id");
                     return;
                 }
                 break;
@@ -47,7 +47,7 @@ public final class GiveCharCommand implements CommandHandler {
                 try {
                     target = Integer.parseInt(args.get(0));
                     if (Grasscutter.getGameServer().getPlayerByUid(target) == null) {
-                        CommandHandler.sendMessage(sender, "Invalid player ID.");
+                        CommandHandler.sendMessage(sender, "无效的玩家id");
                         return;
                     }
 
@@ -55,7 +55,7 @@ public final class GiveCharCommand implements CommandHandler {
                     level = Integer.parseInt(args.get(2));
                 } catch (NumberFormatException ignored) {
                     // TODO: Parse from avatar name using GM Handbook.
-                    CommandHandler.sendMessage(sender, "Invalid avatar or player ID.");
+                    CommandHandler.sendMessage(sender, "无效的角色或玩家id");
                     return;
                 }
                 break;
@@ -63,13 +63,13 @@ public final class GiveCharCommand implements CommandHandler {
 
         Player targetPlayer = Grasscutter.getGameServer().getPlayerByUid(target);
         if (targetPlayer == null) {
-            CommandHandler.sendMessage(sender, "Player not found.");
+            CommandHandler.sendMessage(sender, "查无此人奥");
             return;
         }
 
         AvatarData avatarData = GameData.getAvatarDataMap().get(avatarId);
         if (avatarData == null) {
-            CommandHandler.sendMessage(sender, "Invalid avatar id.");
+            CommandHandler.sendMessage(sender, "无效的角色id");
             return;
         }
 
@@ -88,6 +88,6 @@ public final class GiveCharCommand implements CommandHandler {
         avatar.recalcStats();
 
         targetPlayer.addAvatar(avatar);
-        CommandHandler.sendMessage(sender, String.format("Given %s to %s.", avatarId, target));
+        CommandHandler.sendMessage(sender, String.format("已经把 %s 给了 %s.", avatarId, target));
     }
 }

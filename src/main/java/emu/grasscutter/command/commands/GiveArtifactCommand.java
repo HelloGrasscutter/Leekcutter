@@ -14,13 +14,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@Command(label = "giveart", usage = "giveart [player] <artifactId> <mainPropId> [<appendPropId>[,<times>]]... [level]", description = "Gives the player a specified artifact", aliases = {"gart"}, permission = "player.giveart")
+@Command(label = "giveart", usage = "giveart [player] <artifactId> <mainPropId> [<appendPropId>[,<times>]]... [level]", description = "给予玩家指定属性的圣遗物", aliases = {"gart"}, permission = "player.giveart")
 public final class GiveArtifactCommand implements CommandHandler {
 	@Override
 	public void execute(Player sender, List<String> args) {
 		int size = args.size(), target, itemId, mainPropId, level = 1;
 		ArrayList<Integer> appendPropIdList = new ArrayList<>();
-		String msg = "Usage: giveart|gart [player] <artifactId> <mainPropId> [<appendPropId>[,<times>]]... [level]";
+		String msg = "用法: giveart|gart [player] <artifactId> <mainPropId> [<appendPropId>[,<times>]]... [level]";
 
 		if (sender == null && size < 2) {
 			CommandHandler.sendMessage(null, msg);
@@ -70,14 +70,14 @@ public final class GiveArtifactCommand implements CommandHandler {
 
 		Player targetPlayer = Grasscutter.getGameServer().getPlayerByUid(target);
 		if (targetPlayer == null) {
-			CommandHandler.sendMessage(sender, "Player not found.");
+			CommandHandler.sendMessage(sender, "笑死这个玩家根本就不存在");
 			return;
 		}
 
 		ItemData itemData = GameData.getItemDataMap().get(itemId);
 
 		if (itemData.getItemType() != ItemType.ITEM_RELIQUARY) {
-			CommandHandler.sendMessage(sender, "Invalid artifact ID.");
+			CommandHandler.sendMessage(sender, "查无此圣遗物，恭喜你成功的从酒吧里点了一份炒饭");
 			return;
 		}
 
@@ -88,7 +88,7 @@ public final class GiveArtifactCommand implements CommandHandler {
 		item.getAppendPropIdList().addAll(appendPropIdList);
 		targetPlayer.getInventory().addItem(item, ActionReason.SubfieldDrop);
 
-		CommandHandler.sendMessage(sender, String.format("Given %s to %s.", itemId, target));
+		CommandHandler.sendMessage(sender, String.format("已经把 %s 给了 %s", itemId, target));
 	}
 }
 

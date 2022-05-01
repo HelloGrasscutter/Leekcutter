@@ -8,7 +8,7 @@ import emu.grasscutter.game.player.Player;
 import java.util.*;
 
 @Command(label = "help", usage = "help [command]",
-        description = "Sends the help message or shows information about a specified command")
+        description = "给你发送一些帮助消息")
 public final class HelpCommand implements CommandHandler {
 
     @Override
@@ -32,20 +32,20 @@ public final class HelpCommand implements CommandHandler {
             CommandHandler handler = CommandMap.getInstance().getHandler(command);
             StringBuilder builder = new StringBuilder(player == null ? "\nHelp - " : "Help - ").append(command).append(": \n");
             if (handler == null) {
-                builder.append("No command found.");
+                builder.append("没有找到仍何可用指令");
             } else {
                 Command annotation = handler.getClass().getAnnotation(Command.class);
 
                 builder.append("   ").append(annotation.description()).append("\n");
-                builder.append("   Usage: ").append(annotation.usage());
+                builder.append("   用法: ").append(annotation.usage());
                 if (annotation.aliases().length >= 1) {
-                    builder.append("\n").append("   Aliases: ");
+                    builder.append("\n").append("   别名: ");
                     for (String alias : annotation.aliases()) {
                         builder.append(alias).append(" ");
                     }
                 }
                 if (player != null && !Objects.equals(annotation.permission(), "") && !player.getAccount().hasPermission(annotation.permission())) {
-                    builder.append("\n Warning: You do not have permission to run this command.");
+                    builder.append("\n 警告：您似乎并没有执行此命令的权限");
                 }
             }
 
@@ -55,13 +55,13 @@ public final class HelpCommand implements CommandHandler {
 
     void SendAllHelpMessage(Player player, List<Command> annotations) {
         if (player == null) {
-            StringBuilder builder = new StringBuilder("\nAvailable commands:\n");
+            StringBuilder builder = new StringBuilder("\n可用命令：\n");
             annotations.forEach(annotation -> {
                 builder.append(annotation.label()).append("\n");
                 builder.append("   ").append(annotation.description()).append("\n");
-                builder.append("   Usage: ").append(annotation.usage());
+                builder.append("   用法: ").append(annotation.usage());
                 if (annotation.aliases().length >= 1) {
-                    builder.append("\n").append("   Aliases: ");
+                    builder.append("\n").append("   别名: ");
                     for (String alias : annotation.aliases()) {
                         builder.append(alias).append(" ");
                     }
@@ -72,13 +72,13 @@ public final class HelpCommand implements CommandHandler {
 
             CommandHandler.sendMessage(null, builder.toString());
         } else {
-            CommandHandler.sendMessage(player, "Available commands:");
+            CommandHandler.sendMessage(player, "可用命令:");
             annotations.forEach(annotation -> {
                 StringBuilder builder = new StringBuilder(annotation.label()).append("\n");
                 builder.append("   ").append(annotation.description()).append("\n");
-                builder.append("   Usage: ").append(annotation.usage());
+                builder.append("   用法: ").append(annotation.usage());
                 if (annotation.aliases().length >= 1) {
-                    builder.append("\n").append("   Aliases: ");
+                    builder.append("\n").append("   别名: ");
                     for (String alias : annotation.aliases()) {
                         builder.append(alias).append(" ");
                     }

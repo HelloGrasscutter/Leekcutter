@@ -7,17 +7,17 @@ import emu.grasscutter.game.player.Player;
 import java.util.List;
 
 @Command(label = "changescene", usage = "changescene <scene id>",
-        description = "Changes your scene", aliases = {"scene"}, permission = "player.changescene")
+        description = "切换你的场景（Scene）", aliases = {"scene"}, permission = "player.changescene")
 public final class ChangeSceneCommand implements CommandHandler {
     @Override
     public void execute(Player sender, List<String> args) {
         if (sender == null) {
-            CommandHandler.sendMessage(null, "Run this command in-game.");
+            CommandHandler.sendMessage(null, "请在游戏里执行该指令");
             return;
         }
 
         if (args.size() < 1) {
-            CommandHandler.sendMessage(sender, "Usage: changescene <scene id>");
+            CommandHandler.sendMessage(sender, "用法: changescene <scene id>");
             return;
         }
 
@@ -25,18 +25,18 @@ public final class ChangeSceneCommand implements CommandHandler {
             int sceneId = Integer.parseInt(args.get(0));
             
             if (sceneId == sender.getSceneId()) {
-            	CommandHandler.sendMessage(sender, "You are already in that scene");
+            	CommandHandler.sendMessage(sender, "你本身已经在此场景里辣！");
             	return;
             }
             
             boolean result = sender.getWorld().transferPlayerToScene(sender, sceneId, sender.getPos());
-            CommandHandler.sendMessage(sender, "Changed to scene " + sceneId);
+            CommandHandler.sendMessage(sender, "尝试切换至场景： " + sceneId);
             
             if (!result) {
-                CommandHandler.sendMessage(sender, "Scene does not exist");
+                CommandHandler.sendMessage(sender, "找不到此场景");
             }
         } catch (Exception e) {
-            CommandHandler.sendMessage(sender, "Usage: changescene <scene id>");
+            CommandHandler.sendMessage(sender, "报错了！错误信息：" + e + "记住，用法是: changescene <scene id>");
         }
     }
 }

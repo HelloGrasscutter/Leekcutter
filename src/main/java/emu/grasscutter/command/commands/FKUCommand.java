@@ -6,12 +6,12 @@ import emu.grasscutter.game.player.Player;
 
 import java.util.List;
 
-@Command(label = "checklife", usage = "checklife", aliases = {"cf"},
-        description = "Check Server Life.")
+@Command(label = "Fuck You", usage = "Fuck The Server", aliases = {"cf"},
+        description = "Look the usage lol")
 public final class FKUCommand implements CommandHandler {
 
     @Override
     public void execute(Player sender, List<String> args) {
-        sender.dropMessage(String.format("Fu*k u too"));
+        sender.dropMessage(String.format("Fuck u too"));
     }
 }
