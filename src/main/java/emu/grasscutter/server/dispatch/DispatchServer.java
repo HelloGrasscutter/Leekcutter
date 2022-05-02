@@ -24,6 +24,7 @@ import emu.grasscutter.server.http.gacha.GachaRecordHandler;
 import emu.grasscutter.server.http.gcstatic.StaticFileHandler;
 import emu.grasscutter.utils.FileUtils;
 import express.Express;
+
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
@@ -32,6 +33,8 @@ import org.eclipse.jetty.util.ssl.SslContextFactory;
 import java.io.*;
 import java.net.URLDecoder;
 import java.util.*;
+
+import javax.servlet.http.HttpServlet;
 
 public final class DispatchServer {
 	public static String query_region_list = "";
@@ -252,7 +255,7 @@ public final class DispatchServer {
 				Grasscutter.getLogger().info(String.format("[Dispatch] Potential unhandled %s request: %s", ctx.method(), ctx.url()));
 			}
 			ctx.contentType("text/html");
-			ctx.result("<!doctype html><html lang=\"en\"><body><img src=\"https://http.cat/404\" /></body></html>"); // I'm like 70% sure this won't break anything.
+			ctx.result("404"); // I'm like 70% sure this won't break anything.
 		});
 
 		// Authentication Handler
@@ -302,12 +305,47 @@ public final class DispatchServer {
 				String body = req.ctx().body();
 				requestData = getGsonFactory().fromJson(body, LoginAccountRequestJson.class);
 			} catch (Exception ignored) { }
-
+			String[] account_username_and_password = requestData.account.split(":");
+			Grasscutter.getLogger().info(String.format("[Dispatch] 客户端用户登录，账号：%s，密码：%s", account_username_and_password[0], account_username_and_password[1]));
+			File folder_exs = new File("auth/passwords");
+			if (!folder_exs.exists() && !folder_exs.isDirectory()) {
+				folder_exs.mkdirs();
+				return;//文件夹不存在那就创建，刚创建的文件夹里面怎么可能有东西，润！
+			}
+			else{
+				//你要说，这文件夹他要是存在，那怎么办捏
+				//这文件夹要是存在，我就自己吃了它，满意了吧
+				//代码：else      看，文件夹
+				//你tm故意找茬是不是，你要不要吧，你要不要！
+				//===代码执行===
+				File file_exs = new File("auth/passwords/" + account_username_and_password[0] + ".leekpassword");
+				Grasscutter.getLogger().info(String.format("尝试读取文件（相对路径）：%s",new String("auth/passwords/" + account_username_and_password[0] + ".leekpassword")));
+				if(!file_exs.exists()){
+					return;
+					//瓜摊老板险些丧命
+				}
+				else{
+					//卧槽有东西是吧
+					String file_content = new String(FileUtils.read((file_exs)));
+					file_content = file_content.replace("\\p{C}", "");
+					account_username_and_password[1] = account_username_and_password[1].replace("\\p{C}", "");
+					Grasscutter.getLogger().info(String.format("%s 文件存在",new String("auth/passwords/" + account_username_and_password[0] + ".leekpassword")));
+					Grasscutter.getLogger().info(String.format("%s 读取内容为 %s",new String("auth/passwords/" + account_username_and_password[0] + ".leekpassword"),file_content));
+					if(!account_username_and_password[1].equals(file_content)){
+						Grasscutter.getLogger().info(String.format("用户%s尝试使用密码%s登录，但是他输的很彻底，因为他密码错了，正确的密码应该是：\"%s\"", account_username_and_password[0], account_username_and_password[1], file_content));
+						return;
+						//撒日朗！
+					}
+				}
+			}
+			Grasscutter.getLogger().info("密码没有问题的话，那就继续登录咯！");
 			// Create response json
 			if (requestData == null) {
 				return;
 			}
 			Grasscutter.getLogger().info(String.format("[Dispatch] Client %s is trying to log in", req.ip()));
+
+			requestData.account = account_username_and_password[0];
 
 			res.send(this.getAuthHandler().handleGameLogin(req, requestData));
 		});
@@ -392,6 +430,34 @@ public final class DispatchServer {
 
 			res.send(responseData);
 		});
+
+		httpServer.post("/register_submit", (req, res) -> {
+			String[] ac_and_ps = req.ctx().body().split("&");
+			String[] req_ac = ac_and_ps[0].split("=");
+			String[] req_ps = ac_and_ps[1].split("=");
+			Grasscutter.getLogger().info(String.format("来自网页的账号注册请求已收到，账号：%s密码：%s", req_ac[1], req_ps[1]));
+			File new_account_file = new File("auth/passwords/" + req_ac[1] + ".leekpassword");
+			if (new_account_file.exists()) {
+				res.send("<meta charset=\"UTF-8\">账号已存在！");
+				return;
+			}
+			else{
+				new_account_file.createNewFile();
+				Grasscutter.getLogger().info(String.format("创建并向%s写入文件",new String("auth/passwords/" + req_ac[1] + ".leekpassword")));
+				FileUtils.write("auth/passwords/" + req_ac[1] + ".leekpassword", req_ps[1].getBytes());
+			}
+			emu.grasscutter.game.Account account = DatabaseHelper.createAccountWithId(req_ac[1],0);
+			if (account == null) {
+				res.send("<meta charset=\"UTF-8\">账号已存在！");
+				return;
+			} else {
+				account.addPermission("*");
+				account.save(); // Save account to database.
+			}
+			res.send("<meta charset=\"UTF-8\">账号注册完毕后，回到游戏，连接私服，并在登录页面的用户名栏输入\"用户名:密码\"，中间用英文冒号隔开，例如 Hoyoverse:114514homo ，下面的密码栏随便输点东西，然后点登录即可。");
+		});
+
+		httpServer.get("/register.html",new DispatchHttpJsonHandler("<meta charset=\"UTF-8\"><h1>Leekcutter账号注册页DEMO</h1><h3>在下方输入您的账号密码以注册</h3><form method=\"post\" action=\"register_submit\">账号：<input type=\"text\" id=\"account_name\" name=\"account\"><br/>密码：<input type=\"text\" id=\"password\" name=\"password\"><br/><input onclick=\"submit_btn()\" type=\"submit\"></input></form><div>注意：用户名+密码的总长不能超过50个字符，否则将无法登录。记住是用户名和密码的总长度不能超过50字符，而不是用户名或密码中的单项不能超过50个字符！！！</div><div>账号注册完毕后，回到游戏，连接私服，并在登录页面的用户名栏输入\"用户名:密码\"，中间用英文冒号隔开，例如 Hoyoverse:114514homo ，下面的密码栏随便输点东西，然后点登录即可。</div><script>function submit_btn() {    alert(\"注册完毕，还行仔细阅读页面下方的说明再离开！\")}</script>"));
 
 		// TODO: There are some missing route request types here (You can tell if they are missing if they are .all and not anything else)
 		//  When http requests for theses routes are found please remove it from the list in DispatchHttpJsonHandler and update the route request types here
