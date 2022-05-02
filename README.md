@@ -73,7 +73,7 @@ cd Leekcutter
 ##### Linux
 
 ```bash
-git clone https://github.com/Grasscutters/Leekcutter.git
+git clone https://github.com/Searchstars/Leekcutter.git
 cd Leekcutter
 chmod +x gradlew
 ./gradlew jar # Compile
