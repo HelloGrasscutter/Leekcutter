@@ -41,7 +41,7 @@ sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
 group = 'searchstars'
-version = '1.0.4-dev'
+version = '1.1.0-dev'
 
 sourceCompatibility = 17
 targetCompatibility = 17
